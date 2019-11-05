@@ -59,6 +59,32 @@ router.post('/add', async (req, res, next) => {
 router.put('/edit', async (req, res, next) => {
   try {
     const activeCart = await Cart.getUsersCart(req.user.id)
+    const updatedCart = await ProductCart.changeQuantity(
+      activeCart,
+      req.body.quantity
+    )
+    res.json(updatedCart)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/delete/:productId', async (req, res, next) => {
+  try {
+    const productId = req.params.productId
+    const activeCart = await Cart.getUsersCart(req.user.id)
+    const product = await ProductCart.findOne({
+      where: {
+        productId,
+        cartId: activeCart.id
+      }
+    })
+
+    if (!product) res.sendStatus(404)
+    else {
+      product.destroy()
+      res.sendStatus(201)
+    }
   } catch (error) {
     next(error)
   }

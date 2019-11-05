@@ -22,6 +22,12 @@ const ProductCart = db.define('product_cart', {
   }
 })
 
+ProductCart.changeQuantity = async function(cart, quantity) {
+  const updated = await cart.update({quantity})
+
+  return updated
+}
+
 User.hasMany(Cart)
 Cart.belongsTo(User)
 Cart.belongsToMany(Product, {through: {model: ProductCart}})
