@@ -19,3 +19,16 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const decreased = await Product.decrease(req.body.quantity, req.params.id)
+    if (decreased) {
+      res.send(decreased)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
