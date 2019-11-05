@@ -56,4 +56,12 @@ router.post('/add', async (req, res, next) => {
   }
 })
 
+router.put('/edit', async (req, res, next) => {
+  try {
+    const activeCart = await Cart.getUsersCart(req.user.id)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router
