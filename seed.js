@@ -1,5 +1,5 @@
 const db = require('./server/db')
-const {Product, User, Cart} = require('./server/db/models')
+const {Product, User, Cart, ProductCart} = require('./server/db/models')
 
 const users = [
   {
@@ -445,7 +445,79 @@ const carts = [
   {id: 27, userId: 3, datePurchased: '2019-03-30 19:30:20'},
   {id: 28, userId: 12, datePurchased: '2019-04-14 20:27:38'},
   {id: 29, userId: 4, datePurchased: '2019-03-04 14:02:56'},
-  {id: 30, userId: 17, datePurchased: '2019-02-06 13:59:16'}
+  {id: 30, userId: 17, datePurchased: '2019-02-06 13:59:16'},
+  {id: 31, userId: 20}
+]
+
+const productsCart = [
+  {cartId: 17, productId: 25, quantity: 1},
+  {cartId: 7, productId: 26, quantity: 2},
+  {cartId: 14, productId: 28, quantity: 3},
+  {cartId: 9, productId: 9, quantity: 2},
+  {cartId: 29, productId: 26, quantity: 1},
+  {cartId: 30, productId: 12, quantity: 2},
+  {cartId: 20, productId: 8, quantity: 2},
+  {cartId: 24, productId: 7, quantity: 2},
+  {cartId: 22, productId: 27, quantity: 2},
+  {cartId: 27, productId: 22, quantity: 3},
+  {cartId: 10, productId: 11, quantity: 2},
+  {cartId: 10, productId: 22, quantity: 2},
+  {cartId: 19, productId: 26, quantity: 3},
+  {cartId: 29, productId: 29, quantity: 3},
+  {cartId: 25, productId: 27, quantity: 3},
+  {cartId: 11, productId: 18, quantity: 3},
+  {cartId: 22, productId: 2, quantity: 1},
+  {cartId: 12, productId: 7, quantity: 3},
+  {cartId: 28, productId: 16, quantity: 3},
+  {cartId: 8, productId: 26, quantity: 1},
+  {cartId: 28, productId: 12, quantity: 1},
+  {cartId: 6, productId: 10, quantity: 3},
+  {cartId: 9, productId: 20, quantity: 1},
+  {cartId: 6, productId: 12, quantity: 2},
+  {cartId: 11, productId: 21, quantity: 2},
+  {cartId: 10, productId: 18, quantity: 2},
+  {cartId: 24, productId: 11, quantity: 2},
+  {cartId: 9, productId: 14, quantity: 1},
+  {cartId: 21, productId: 28, quantity: 2},
+  {cartId: 23, productId: 11, quantity: 3},
+  {cartId: 5, productId: 16, quantity: 3},
+  {cartId: 27, productId: 27, quantity: 2},
+  {cartId: 7, productId: 13, quantity: 1},
+  {cartId: 20, productId: 12, quantity: 2},
+  {cartId: 25, productId: 2, quantity: 2},
+  {cartId: 4, productId: 22, quantity: 3},
+  {cartId: 7, productId: 1, quantity: 3},
+  {cartId: 20, productId: 25, quantity: 1},
+  {cartId: 13, productId: 2, quantity: 2},
+  {cartId: 11, productId: 25, quantity: 1},
+  {cartId: 2, productId: 4, quantity: 1},
+  {cartId: 1, productId: 6, quantity: 2},
+  {cartId: 7, productId: 5, quantity: 1},
+  {cartId: 15, productId: 10, quantity: 1},
+  {cartId: 24, productId: 4, quantity: 2},
+  {cartId: 2, productId: 8, quantity: 3},
+  {cartId: 13, productId: 3, quantity: 3},
+  {cartId: 25, productId: 28, quantity: 3},
+  {cartId: 14, productId: 3, quantity: 3},
+  {cartId: 19, productId: 6, quantity: 3},
+  {cartId: 22, productId: 13, quantity: 1},
+  {cartId: 15, productId: 27, quantity: 2},
+  {cartId: 2, productId: 23, quantity: 2},
+  {cartId: 4, productId: 20, quantity: 3},
+  {cartId: 15, productId: 25, quantity: 3},
+  {cartId: 22, productId: 19, quantity: 1},
+  {cartId: 27, productId: 7, quantity: 2},
+  {cartId: 19, productId: 1, quantity: 1},
+  {cartId: 27, productId: 29, quantity: 2},
+  {cartId: 22, productId: 5, quantity: 3},
+  {cartId: 13, productId: 24, quantity: 2},
+  {cartId: 8, productId: 20, quantity: 3},
+  {cartId: 24, productId: 12, quantity: 1},
+  {cartId: 9, productId: 30, quantity: 3},
+  {cartId: 2, productId: 22, quantity: 2},
+  {cartId: 14, productId: 2, quantity: 2},
+  {cartId: 18, productId: 17, quantity: 3},
+  {cartId: 31, productId: 28, quantity: 3}
 ]
 
 const seed = async () => {
@@ -465,6 +537,12 @@ const seed = async () => {
   await Promise.all(
     carts.map(cart => {
       return Cart.create(cart)
+    })
+  )
+
+  await Promise.all(
+    productsCart.map(cart => {
+      return ProductCart.create(cart)
     })
   )
 
