@@ -152,7 +152,8 @@ const products = [
     description:
       'in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec',
     quantity: 27,
-    imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
+    imageUrl:
+      'http://fixstream.com/wp-content/uploads/2015/08/oracle-logo-square.jpg'
   },
   {
     id: 2,

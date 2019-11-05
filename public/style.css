@@ -19,3 +19,21 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.all-view {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: space-between;
+}
+.productHeader {
+  margin-bottom: 15px;
+}
