@@ -17,10 +17,10 @@ export default connect(
     render() {
       return (
         <div>
-          <div>
+          <div className="productHeader">
             <h1>{ALL_PRODUCTS_HEADER}</h1>
           </div>
-          <div>
+          <div className="all-view">
             {this.props.products.map(product => (
               <SmallProduct key={product.id} {...product} />
             ))}
