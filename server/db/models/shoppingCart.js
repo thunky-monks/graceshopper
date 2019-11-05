@@ -3,16 +3,26 @@ const db = require('../db')
 
 const Cart = db.define('cart', {
   datePurchased: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATE
     // validate: {
     //   isDate: true
     // },
-    defaulValue: null
+    // defaulValue: null
   }
   // active: {
   //   type: Sequelize.BOOLEAN,
   //   defaulValue: true
   // }
 })
+
+Cart.getUsersCart = function(userId) {
+  const cartById = Cart.findOne({
+    where: {
+      datePurchased: null,
+      userId: userId
+    }
+  })
+  return cartById
+}
 
 module.exports = Cart

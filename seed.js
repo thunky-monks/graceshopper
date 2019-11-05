@@ -444,7 +444,8 @@ const carts = [
   {id: 27, userId: 3, datePurchased: '2019-03-30 19:30:20'},
   {id: 28, userId: 12, datePurchased: '2019-04-14 20:27:38'},
   {id: 29, userId: 4, datePurchased: '2019-03-04 14:02:56'},
-  {id: 30, userId: 17, datePurchased: '2019-02-06 13:59:16'}
+  {id: 30, userId: 17, datePurchased: '2019-02-06 13:59:16'},
+  {id: 31, userId: 20}
 ]
 
 const productsCart = [
@@ -515,7 +516,7 @@ const productsCart = [
   {cartId: 2, productId: 22, quantity: 2},
   {cartId: 14, productId: 2, quantity: 2},
   {cartId: 18, productId: 17, quantity: 3},
-  {cartId: 1, productId: 28, quantity: 3}
+  {cartId: 31, productId: 28, quantity: 3}
 ]
 
 const seed = async () => {
