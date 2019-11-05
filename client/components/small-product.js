@@ -4,7 +4,7 @@ import {Card, Icon, Image} from 'semantic-ui-react'
 
 export default props => (
   <Card>
-    <Image src={props.imageUrl} />
+    <Image src={props.imageURL} />
     <Card.Content>
       <Card.Header>{props.name}</Card.Header>
       {/* <Card.Meta>MANUFACTURER GOES HERE</Card.Meta> */}
