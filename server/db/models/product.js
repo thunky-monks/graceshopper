@@ -1,4 +1,3 @@
-const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
@@ -39,5 +38,14 @@ const Product = db.define('product', {
     }
   }
 })
+
+Product.decrease = async function(num, id) {
+  const product = await this.findByPk(id)
+  let updated
+  if (product) {
+    updated = await product.update({quantity: product.quantity - num})
+    return product
+  }
+}
 
 module.exports = Product
