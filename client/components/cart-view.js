@@ -22,7 +22,7 @@ export default connect(
             <h1>{CART_HEADER}</h1>
           </div>
           <Item.Group>
-            {this.props.products
+            {this.props.products.products
               .filter(product => this.props.cart[product.id])
               .map(product => (
                 <CartProduct
