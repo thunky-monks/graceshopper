@@ -3,14 +3,17 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getSingleProducts} from '../store/product'
 import {BIG_PRODUCTS_HEADER} from '../strings'
+import {Item, Button, Input} from 'semantic-ui-react'
 
 export default connect(
   state => ({products: state.products}),
-  dispatch => ({getSingleProducts: id => dispatch(getSingleProducts(id))})
+  dispatch => ({
+    getSingleProducts: productId => dispatch(getSingleProducts(productId))
+  })
 )(
   class extends React.Component {
     componentDidMount() {
-      this.props.getSingleProducts()
+      this.props.getSingleProducts(this.props.match.params.id)
     }
 
     render() {
@@ -20,7 +23,23 @@ export default connect(
           <div className="productHeader">
             <h1>hello</h1>
           </div>
-          <div className="single-big-view" />
+          <div className="single-big-view">
+            <Item>
+              <Item.Image
+                size="medium"
+                src={this.props.products.singleProduct.imageURL}
+              />
+              <Item.Content verticalAlign="middle">
+                <Item.Header>
+                  {this.props.products.singleProduct.name}
+                </Item.Header>
+                <Item.Meta>
+                  Price: ${this.props.products.singleProduct.price}
+                </Item.Meta>
+                <Item.Meta> </Item.Meta>
+              </Item.Content>
+            </Item>
+          </div>
         </div>
       )
     }
@@ -41,20 +60,4 @@ export default connect(
          </Item.Group> */
 }
 
-{
-  /* <Item>
-         <Item.Image size=“medium” src={this.props.imageURL} />
-         <Item.Content verticalAlign=“middle”>
-           <Item.Header>{this.props.name}</Item.Header>
-           <Item.Meta>${this.props.price}</Item.Meta>
-           <Input
-             label=“Quantity:”
-             placeholder={this.state.quantity}
-             onChange={this.handleChange}
-           />
-           <Button onClick={this.props.changeQuantity(this.state.quantity)}>
-             Update
-           </Button>
-         </Item.Content>
-       </Item> */
-}
+// {
