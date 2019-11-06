@@ -59,7 +59,13 @@ router.post('/add', async (req, res, next) => {
 router.put('/edit', async (req, res, next) => {
   try {
     const activeCart = await Cart.getUsersCart(req.user.id)
-    const updatedCart = await ProductCart.changeQuantity(activeCart, req.body)
+    const cartItem = await ProductCart.findOne({
+      where: {productId: req.body.productId, cartId: activeCart.id}
+    })
+    const updatedCart = await ProductCart.changeQuantity(
+      cartItem,
+      req.body.quantity
+    )
     res.json(updatedCart)
   } catch (error) {
     next(error)

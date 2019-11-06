@@ -4,9 +4,11 @@ import {Item, Input, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 import {changeQuantity} from '../store/cart'
+import product from '../store/product'
 
 export default connect(null, dispatch => ({
-  changeQuantity: quantity => () => dispatch(changeQuantity(quantity))
+  changeQuantity: (quantity, productId) => () =>
+    dispatch(changeQuantity(quantity, productId))
 }))(
   class CartProduct extends Component {
     constructor(props) {
@@ -33,7 +35,12 @@ export default connect(null, dispatch => ({
               placeholder={this.state.quantity}
               onChange={this.handleChange}
             />
-            <Button onClick={this.props.changeQuantity(this.state.quantity)}>
+            <Button
+              onClick={this.props.changeQuantity(
+                +this.state.quantity,
+                this.props.id
+              )}
+            >
               Update
             </Button>
           </Item.Content>
