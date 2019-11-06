@@ -60,6 +60,33 @@ const createApp = () => {
       saveUninitialized: false
     })
   )
+
+  /*
+  localStorage
+
+  */
+
+  // abstracted into a middleware function in a different file
+  app.use((req, res, next) => {
+    // checks if a user exists
+    // req.user
+    // creates a cart if it doesn't exist
+    // req.session.cart = {}
+  })
+
+  // req.session = {}
+  /*
+    req.session = {
+      cart: {
+        productId: quantities
+      }
+    }
+
+    // array versus object
+    cart represented as an object in the FE
+    keys: productId: quantities
+  */
+
   app.use(passport.initialize())
   app.use(passport.session())
 

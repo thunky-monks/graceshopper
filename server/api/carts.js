@@ -1,6 +1,22 @@
 const router = require('express').Router()
 const {Cart, ProductCart} = require('../db/models')
 
+// could go into a different file or folder
+// middleware functions
+
+// function isUser(req, res, next) {
+// check for user
+// next if they exist
+// throw an error, or next(error) if they don't
+// }
+
+// security, guarding your gates - gatekeeper middleware
+// PUT, POST, DELETE - only the users we WANT are able to access them
+// users must be protected
+
+// identifying more RESTful routes
+// /api/carts
+// /api/users/:id/cart
 router.get('/', async (req, res, next) => {
   try {
     // const cartById = await Cart.findAll({
@@ -8,6 +24,8 @@ router.get('/', async (req, res, next) => {
     //     userId: req.user.id
     //   }
     // })
+
+    // eager load your join table
     const cartById = await Cart.getUsersCart(req.user.id)
 
     const cartItems = await ProductCart.findAll({
@@ -24,6 +42,10 @@ router.get('/', async (req, res, next) => {
     next(error)
   }
 })
+
+// setting datePurchased to true rendering a cart to become an order
+// update your inventory in your products table
+// setting final price in your ORDER, final quantity per each item in your join table
 
 router.post('/checkout', async (req, res, next) => {
   try {
@@ -43,7 +65,7 @@ router.post('/add', async (req, res, next) => {
     const activeCart = await Cart.getUsersCart(req.user.id)
 
     const {id, quantity} = req.body
-
+    // activeCart.addProducts(...)
     const newProduct = ProductCart.create({
       productId: id,
       quantity,
@@ -62,6 +84,7 @@ router.put('/edit', async (req, res, next) => {
     const cartItem = await ProductCart.findOne({
       where: {productId: req.body.productId, cartId: activeCart.id}
     })
+    // cartItem.update(...)
     const updatedCart = await ProductCart.changeQuantity(
       cartItem,
       req.body.quantity

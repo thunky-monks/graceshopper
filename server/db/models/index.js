@@ -4,7 +4,9 @@ const Cart = require('./shoppingCart')
 const db = require('../db')
 const Sequelize = require('sequelize')
 
+// put this in a separate file
 const ProductCart = db.define('product_cart', {
+  // you don't need productId and cartId
   productId: {
     type: Sequelize.INTEGER,
     allowNull: false
@@ -13,6 +15,7 @@ const ProductCart = db.define('product_cart', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+  // maybe add a hook for if quantity tries to get to 0, you can just remove the instance
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,

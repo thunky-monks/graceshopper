@@ -15,6 +15,16 @@ const Cart = db.define('cart', {
   // }
 })
 
+// prototype method
+// utils file that has methods for this
+// a util file with middleware
+
+// function getCart (req, res, next) {
+//   // find cart
+//   // req.cart = cart;
+//   // next();
+// }
+
 Cart.getUsersCart = function(userId) {
   const cartById = Cart.findOne({
     where: {
@@ -24,7 +34,7 @@ Cart.getUsersCart = function(userId) {
   })
   return cartById
 }
-
+// should remove this from master branch
 Cart.changeQuantity = async function(cart, num, id) {
   const updated = await cart.update({quantity: cart.quantity + num})
 

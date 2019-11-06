@@ -26,6 +26,7 @@ const User = db.define('user', {
       notEmpty: true
     }
   },
+  // prototype method or a virtual method that gets the full name of the user
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.

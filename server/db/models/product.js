@@ -11,6 +11,9 @@ const Product = db.define('product', {
     }
   },
   price: {
+    // 0.015
+    // store this as PENNIES, and INTEGER
+    // maximum
     type: Sequelize.DECIMAL,
     allowNull: false,
     validate: {
@@ -21,11 +24,13 @@ const Product = db.define('product', {
     type: Sequelize.TEXT,
     defaultValue: 'No description available.'
   },
+  // call this inventory
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       min: 0
+      // maximum
     }
   },
   imageURL: {
@@ -39,6 +44,7 @@ const Product = db.define('product', {
   }
 })
 
+// class versus prototype methods
 Product.decrease = async function(num, id) {
   const product = await this.findByPk(id)
   let updated
