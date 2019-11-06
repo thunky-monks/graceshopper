@@ -29,8 +29,9 @@ router.post('/checkout', async (req, res, next) => {
   try {
     const activeCart = await Cart.getUsersCart(req.user.id)
     activeCart.update({datePurchased: new Date()})
-    const newCart = await Cart.create({userId: req.user.id})
-    res.json(newCart)
+
+    // const newCart = await Cart.create({userId: req.user.id})
+    res.json(activeCart)
   } catch (error) {
     next(error)
   }

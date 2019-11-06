@@ -3,7 +3,7 @@ import axios from 'axios'
 //action types
 const CHANGED_QUANTITY = 'CHANGED_QUANTITY'
 const REMOVED_ITEM = 'REMOVED_ITEM'
-const CHECKEDOUT = 'CHECKEDOUT'
+// const CHECKEDOUT = 'CHECKEDOUT'
 const GOT_CART = 'GOT_CART'
 
 //action creators
@@ -23,9 +23,9 @@ const removedItem = productId => ({
   productId
 })
 
-const checkedOut = () => ({
-  type: CHECKED_OUT
-})
+// const checkedOut = () => ({
+//   type: CHECKEDOUT
+// })
 
 //thunks
 export const changeQuantity = (quantity, productId) => async dispatch => {
@@ -55,6 +55,15 @@ export const removeItem = productId => async dispatch => {
     dispatch(removedItem(productId))
   } catch (error) {
     console.log('error removing item from cart')
+  }
+}
+
+export const checkout = () => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/carts/checkout')
+    dispatch(gotCart(data))
+  } catch (error) {
+    console.log('error checking out')
   }
 }
 

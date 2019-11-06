@@ -4,12 +4,15 @@ import {connect} from 'react-redux'
 
 import CartProduct from './cart-product'
 
-import {getCart} from '../store/cart'
+import {getCart, checkout} from '../store/cart'
 import {Item, Button} from 'semantic-ui-react'
 
 export default connect(
   state => ({products: state.products, cart: state.cart}),
-  dispatch => ({getCart: () => dispatch(getCart())})
+  dispatch => ({
+    getCart: () => dispatch(getCart()),
+    checkout: () => dispatch(checkout())
+  })
 )(
   class CartView extends Component {
     constructor(props) {
@@ -58,7 +61,9 @@ export default connect(
             <h3>
               Subtotal ({theCartCount} items): ${theTotal}
             </h3>
-            <Button color="olive">Checkout</Button>
+            <Button color="olive" onClick={this.props.checkout}>
+              Checkout
+            </Button>
           </div>
         </div>
       )
