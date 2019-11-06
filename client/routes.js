@@ -4,6 +4,9 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, AllProducts, BigProduct} from './components'
 import {me} from './store'
+import CartView from './components/cart-view'
+
+import {getAllProducts} from './store/product'
 
 /**
  * COMPONENT
@@ -11,6 +14,7 @@ import {me} from './store'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    this.props.getAllProducts()
   }
 
   render() {
@@ -23,7 +27,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={BigProduct} />
-
+        <Route path="/cart" component={CartView} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -44,7 +48,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    products: state.products
   }
 }
 
@@ -52,6 +57,9 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+    },
+    getAllProducts() {
+      dispatch(getAllProducts())
     }
   }
 }
