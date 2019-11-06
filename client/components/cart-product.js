@@ -2,7 +2,6 @@
 import React, {Component} from 'react'
 import {Item, Input, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
-
 import {changeQuantity} from '../store/cart'
 import product from '../store/product'
 

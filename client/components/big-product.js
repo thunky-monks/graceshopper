@@ -2,16 +2,29 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getSingleProducts} from '../store/product'
-import {BIG_PRODUCTS_HEADER} from '../strings'
-import {Item, Button, Input} from 'semantic-ui-react'
+import {Item, Input, Button, Icon} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+import {changeQuantity} from '../store/cart'
 
 export default connect(
   state => ({products: state.products}),
   dispatch => ({
-    getSingleProducts: productId => dispatch(getSingleProducts(productId))
+    getSingleProducts: productId => dispatch(getSingleProducts(productId)),
+    changeQuantity: (quantity, productId) => () =>
+      dispatch(changeQuantity(quantity, productId))
   })
 )(
   class extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        quantity: this.props.quantity
+      }
+      this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(event) {
+      this.setState({quantity: event.target.value})
+    }
     componentDidMount() {
       this.props.getSingleProducts(this.props.match.params.id)
     }
@@ -19,20 +32,23 @@ export default connect(
     render() {
       console.log(this.props)
       return (
-        <div>
-          <div className="productHeader">
-            <h1>hello</h1>
-          </div>
-          <div className="single-big-view">
+        <div className="single-big-view">
+          <div>
             <Item>
               <Item.Image
-                size="medium"
+                size="large"
                 src={this.props.products.singleProduct.imageURL}
               />
               <Item.Content verticalAlign="middle">
-                <Item.Header>
+                <Item.Header id="singleViewHeader">
                   {this.props.products.singleProduct.name}
                 </Item.Header>
+                <br />
+                <Item.Description>
+                  {this.props.products.singleProduct.description}
+                </Item.Description>
+                <br />
+
                 <Item.Meta>
                   Price: ${this.props.products.singleProduct.price}
                 </Item.Meta>
@@ -40,24 +56,39 @@ export default connect(
               </Item.Content>
             </Item>
           </div>
+          <br />
+          <Input
+            label="Quantity:"
+            placeholder={this.state.quantity}
+            onChange={this.handleChange}
+          />
+          <Button
+            onClick={this.props.changeQuantity(
+              +this.state.quantity,
+              this.props.id
+            )}
+          >
+            Update
+          </Button>
+          <br />
+          <br />
+
+          <Button animated="vertical">
+            <Button.Content hidden>Add</Button.Content>
+            <Button.Content visible>
+              <Icon name="shop" />
+            </Button.Content>
+          </Button>
+          <br />
+          <br />
+          <div>
+            <Button icon labelPosition="left">
+              <Icon name="left arrow" />
+              <Link to="/products">Back</Link>
+            </Button>
+          </div>
         </div>
       )
     }
   }
 )
-
-{
-  /* <Item.Group>
-           {this.props.products
-             .filter(product => this.props.cart[product.id])
-             .map(product => (
-               <CartProduct
-                 key={product.id}
-                 {...product}
-                 quantity={this.props.cart[product.id]}
-               />
-             ))}
-         </Item.Group> */
-}
-
-// {
