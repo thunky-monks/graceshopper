@@ -18,6 +18,15 @@ const gotCart = cart => ({
   cart
 })
 
+const removedItem = productId => ({
+  type: REMOVED_ITEM,
+  productId
+})
+
+const checkedOut = () => ({
+  type: CHECKED_OUT
+})
+
 //thunks
 export const changeQuantity = (quantity, productId) => async dispatch => {
   try {
@@ -40,11 +49,20 @@ export const getCart = () => async dispatch => {
   }
 }
 
+export const removeItem = productId => async dispatch => {
+  try {
+    await axios.delete(`/api/carts/delete/${productId}`)
+    dispatch(removedItem(productId))
+  } catch (error) {
+    console.log('error removing item from cart')
+  }
+}
+
 //initialState
 const initialState = {}
 
 //reducer
-export default function(state = {}, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case CHANGED_QUANTITY:
       return {...state, [action.productId]: action.quantity}
@@ -53,6 +71,10 @@ export default function(state = {}, action) {
         prev[curr.productId] = curr.quantity
         return prev
       }, {})
+    case REMOVED_ITEM:
+      let newState = {...state}
+      delete newState[action.productId]
+      return newState
     default:
       return state
   }
