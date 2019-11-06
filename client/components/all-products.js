@@ -22,7 +22,7 @@ export default connect(
             <h1>{ALL_PRODUCTS_HEADER}</h1>
           </div>
           <div className="all-view">
-            {this.props.products.map(product => (
+            {this.props.products.products.map(product => (
               <SmallProduct key={product.id} {...product} />
             ))}
           </div>
