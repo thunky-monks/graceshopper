@@ -17,10 +17,15 @@ export default connect(null, dispatch => ({
         quantity: this.props.quantity
       }
       this.handleChange = this.handleChange.bind(this)
+      this.calculateItemTotal = this.calculateItemTotal.bind(this)
     }
 
     handleChange(event) {
       this.setState({quantity: event.target.value})
+    }
+
+    calculateItemTotal() {
+      return (this.props.price * this.props.quantity).toFixed(2)
     }
 
     render() {
@@ -29,7 +34,8 @@ export default connect(null, dispatch => ({
           <Item.Image size="medium" src={this.props.imageURL} />
           <Item.Content verticalAlign="middle">
             <Item.Header>{this.props.name}</Item.Header>
-            <Item.Meta>${this.props.price}</Item.Meta>
+            <Item.Meta>Price: ${this.props.price}</Item.Meta>
+            <Item.Meta>Item total: {this.calculateItemTotal()} </Item.Meta>
             <Input
               label="Quantity:"
               placeholder={this.state.quantity}
