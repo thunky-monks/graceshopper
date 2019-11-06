@@ -517,7 +517,9 @@ const productsCart = [
   {cartId: 2, productId: 22, quantity: 2},
   {cartId: 14, productId: 2, quantity: 2},
   {cartId: 18, productId: 17, quantity: 3},
-  {cartId: 31, productId: 28, quantity: 3}
+  {cartId: 31, productId: 28, quantity: 3},
+  {cartId: 31, productId: 21, quantity: 1},
+  {cartId: 31, productId: 7, quantity: 7}
 ]
 
 const seed = async () => {
