@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, AllProducts, BigProduct} from './components'
 import {me} from './store'
 import CartView from './components/cart-view'
+import {getCart} from './store/cart'
 
 import {getAllProducts} from './store/product'
 
@@ -15,6 +16,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.getAllProducts()
+    this.props.getCart()
   }
 
   render() {
@@ -49,7 +51,8 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    products: state.products
+    products: state.products,
+    cart: state.cart
   }
 }
 
@@ -60,7 +63,8 @@ const mapDispatch = dispatch => {
     },
     getAllProducts() {
       dispatch(getAllProducts())
-    }
+    },
+    getCart: () => dispatch(getCart())
   }
 }
 

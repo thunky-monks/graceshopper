@@ -2,8 +2,22 @@
 import React from 'react'
 import {Button, Card, Icon, Image} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {changeQuantity, addItem} from '../store/cart'
 
-export default props => (
+export default connect(
+  state => ({
+    cart: state.cart
+  }),
+  dispatch => ({
+    changeQuantity: (quantity, productId) => () => {
+      dispatch(changeQuantity(quantity, productId))
+    },
+    addItem: (quantity, productId) => () => {
+      dispatch(addItem(quantity, productId))
+    }
+  })
+)(props => (
   <Card>
     <Link to={`/products/${props.id}`}>
       <Image src={props.imageURL} />
@@ -19,7 +33,14 @@ export default props => (
       <Icon name="dollar sign" />
       {props.price}
       <br />
-      <Button animated="vertical">
+      <Button
+        animated="vertical"
+        onClick={
+          props.cart[props.id]
+            ? props.changeQuantity(props.cart[props.id] + 1, props.id)
+            : props.addItem(1, props.id)
+        }
+      >
         <Button.Content hidden>Add</Button.Content>
         <Button.Content visible>
           <Icon name="shop" />
@@ -27,4 +48,4 @@ export default props => (
       </Button>
     </Card.Content>
   </Card>
-)
+))

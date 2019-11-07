@@ -33,9 +33,9 @@ router.post('/checkout', async (req, res, next) => {
 router.post('/add', async (req, res, next) => {
   try {
     const activeCart = await Cart.getUsersCart(req.user.id)
-    const {id, quantity} = req.body
+    const {productId, quantity} = req.body
     const newProduct = ProductCart.create({
-      productId: id,
+      productId,
       quantity,
       cartId: activeCart.id
     })
