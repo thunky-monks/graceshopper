@@ -37,3 +37,14 @@ main {
 .productHeader {
   margin-bottom: 15px;
 }
+.single-big-view {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+#singleViewHeader {
+  color: black;
+  font-weight: bold;
+  font-size: 18pt;
+  margin-top: 10px;
+}
