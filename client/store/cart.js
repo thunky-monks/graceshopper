@@ -58,10 +58,10 @@ export const removeItem = productId => async dispatch => {
   }
 }
 
-export const checkout = () => async dispatch => {
+export const checkout = cart => async dispatch => {
   try {
-    const {data} = await axios.post('/api/carts/checkout')
-    dispatch(gotCart(data))
+    await axios.post('/api/carts/checkout', {cart})
+    dispatch(gotCart([]))
   } catch (error) {
     console.log('error checking out')
   }
@@ -76,6 +76,7 @@ export default function(state = initialState, action) {
     case CHANGED_QUANTITY:
       return {...state, [action.productId]: action.quantity}
     case GOT_CART:
+      console.log(action.cart)
       return action.cart.reduce((prev, curr) => {
         prev[curr.productId] = curr.quantity
         return prev

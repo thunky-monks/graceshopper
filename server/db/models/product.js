@@ -48,4 +48,25 @@ Product.decrease = async function(num, id) {
   }
 }
 
+Product.updateInventory = async function(cart) {
+  const products = await this.findAll({
+    where: {
+      id: Object.keys(cart)
+    }
+  })
+  console.log('all products', products)
+  console.log('cart', cart)
+  for (let i in cart) {
+    // if (true) {
+    console.log('cart at i', cart[i])
+    const theProduct = products.find(product => product.id === i)
+    console.log('theProduct', theProduct)
+    // console.log('products at i quantity', theProduct.quantity)
+    theProduct.quantity -= cart[i]
+    await theProduct.save()
+    // }
+  }
+  console.log('products', products)
+}
+
 module.exports = Product

@@ -11,7 +11,7 @@ export default connect(
   state => ({products: state.products, cart: state.cart}),
   dispatch => ({
     getCart: () => dispatch(getCart()),
-    checkout: () => dispatch(checkout())
+    checkout: cart => () => dispatch(checkout(cart))
   })
 )(
   class CartView extends Component {
@@ -38,10 +38,12 @@ export default connect(
         (total, item) => total + this.props.cart[item.id],
         0
       )
-      const theTotal = theCart.reduce(
-        (total, item) => total + item.price * this.props.cart[item.id],
-        0
-      )
+      const theTotal = theCart
+        .reduce(
+          (total, item) => total + item.price * this.props.cart[item.id],
+          0
+        )
+        .toFixed(2)
       return (
         <div>
           <div className="cartHeader">
@@ -61,7 +63,10 @@ export default connect(
             <h3>
               Subtotal ({theCartCount} items): ${theTotal}
             </h3>
-            <Button color="olive" onClick={this.props.checkout}>
+            <Button
+              color="olive"
+              onClick={this.props.checkout(this.props.cart)}
+            >
               Checkout
             </Button>
           </div>

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Cart, ProductCart} = require('../db/models')
+const {Cart, ProductCart, Product} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -29,8 +29,8 @@ router.post('/checkout', async (req, res, next) => {
   try {
     const activeCart = await Cart.getUsersCart(req.user.id)
     activeCart.update({datePurchased: new Date()})
-
-    // const newCart = await Cart.create({userId: req.user.id})
+    await Product.updateInventory(req.body.cart)
+    const newCart = await Cart.create({userId: req.user.id})
     res.json(activeCart)
   } catch (error) {
     next(error)
