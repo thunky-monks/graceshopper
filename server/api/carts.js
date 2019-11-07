@@ -34,7 +34,7 @@ router.post('/add', async (req, res, next) => {
   try {
     const activeCart = await Cart.getUsersCart(req.user.id)
     const {productId, quantity} = req.body
-    const newProduct = ProductCart.create({
+    const newProduct = await ProductCart.create({
       productId,
       quantity,
       cartId: activeCart.id
