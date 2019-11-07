@@ -2,12 +2,12 @@
 import React, {Component} from 'react'
 import {Item, Input, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import {changeQuantity} from '../store/cart'
-import product from '../store/product'
+import {changeQuantity, removeItem} from '../store/cart'
 
 export default connect(null, dispatch => ({
   changeQuantity: (quantity, productId) => () =>
-    dispatch(changeQuantity(quantity, productId))
+    dispatch(changeQuantity(quantity, productId)),
+  removeItem: productId => () => dispatch(removeItem(productId))
 }))(
   class CartProduct extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ export default connect(null, dispatch => ({
           <Item.Content verticalAlign="middle">
             <Item.Header>{this.props.name}</Item.Header>
             <Item.Meta>Price: ${this.props.price}</Item.Meta>
-            <Item.Meta>Item total: {this.calculateItemTotal()} </Item.Meta>
+            <Item.Meta>Item total: ${this.calculateItemTotal()} </Item.Meta>
             <Input
               label="Quantity:"
               placeholder={this.state.quantity}
@@ -49,6 +49,9 @@ export default connect(null, dispatch => ({
               Update
             </Button>
           </Item.Content>
+          <Button color="red" onClick={this.props.removeItem(this.props.id)}>
+            Remove from Cart
+          </Button>
         </Item>
       )
     }

@@ -146,7 +146,6 @@ const users = [
 
 const products = [
   {
-    id: 1,
     name: 'oracle.com',
     price: 9.22,
     description:
@@ -156,7 +155,6 @@ const products = [
       'http://fixstream.com/wp-content/uploads/2015/08/oracle-logo-square.jpg'
   },
   {
-    id: 2,
     name: 'youtube1.com',
     price: 9.03,
     description:
@@ -165,7 +163,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
   },
   {
-    id: 3,
     name: 'youtube.com',
     price: 5.31,
     description:
@@ -174,7 +171,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
   },
   {
-    id: 4,
     name: 'e-recht24.de',
     price: 1.81,
     description:
@@ -183,7 +179,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
   },
   {
-    id: 5,
     name: 'businessinsider.com',
     price: 5.71,
     description: 'a suscipit nulla elit ac nulla sed vel enim sit',
@@ -191,7 +186,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    id: 6,
     name: 'gmpg.org',
     price: 8.22,
     description:
@@ -200,7 +194,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    id: 7,
     name: 'twitpic.com',
     price: 8.85,
     description:
@@ -209,7 +202,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
   },
   {
-    id: 8,
     name: 'wp.com',
     price: 0.7,
     description:
@@ -218,7 +210,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    id: 9,
     name: 'seesaa.net',
     price: 2.46,
     description:
@@ -227,7 +218,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/ff4444/ffffff'
   },
   {
-    id: 10,
     name: 'last.fm',
     price: 8.76,
     description: 'sed nisl nunc rhoncus dui vel sem sed sagittis nam',
@@ -235,7 +225,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
   },
   {
-    id: 11,
     name: 'deliciousdays.com',
     price: 6.74,
     description:
@@ -244,7 +233,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
   },
   {
-    id: 12,
     name: 'cbc.ca',
     price: 1.14,
     description:
@@ -253,7 +241,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
   },
   {
-    id: 13,
     name: 'uol.com.br',
     price: 6.38,
     description:
@@ -262,7 +249,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
   },
   {
-    id: 14,
     name: 'mlb.com',
     price: 0.79,
     description:
@@ -271,7 +257,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
   },
   {
-    id: 15,
     name: 'archive1.org',
     price: 2.13,
     description:
@@ -280,7 +265,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/5fa2dd/ffffff'
   },
   {
-    id: 16,
     name: 'netlog.com',
     price: 0.85,
     description:
@@ -289,7 +273,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
   },
   {
-    id: 17,
     name: 'so-net.ne.jp',
     price: 6.35,
     description:
@@ -298,7 +281,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
   },
   {
-    id: 18,
     name: 'wikispaces.com',
     price: 2.43,
     description:
@@ -307,7 +289,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    id: 19,
     name: 'cargocollective.com',
     price: 5.02,
     description:
@@ -316,7 +297,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
   },
   {
-    id: 20,
     name: 'printfriendly.com',
     price: 9.7,
     description:
@@ -325,7 +305,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/dddddd/000000'
   },
   {
-    id: 21,
     name: 'tmall.com',
     price: 1.86,
     description:
@@ -334,7 +313,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
   },
   {
-    id: 22,
     name: 'ameblo.jp',
     price: 3.33,
     description:
@@ -343,7 +321,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/5fa2dd/ffffff'
   },
   {
-    id: 23,
     name: 'free.fr',
     price: 0.87,
     description:
@@ -352,7 +329,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
   },
   {
-    id: 24,
     name: '4shared.com',
     price: 3.84,
     description:
@@ -361,7 +337,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/ff4444/ffffff'
   },
   {
-    id: 25,
     name: 'disqus.com',
     price: 1.17,
     description:
@@ -370,7 +345,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/dddddd/000000'
   },
   {
-    id: 26,
     name: 'techcrunch.com',
     price: 1.45,
     description:
@@ -379,7 +353,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.jpg/cc0000/ffffff'
   },
   {
-    id: 27,
     name: 'weebly.com',
     price: 1.42,
     description: 'ullamcorper augue a suscipit nulla elit ac nulla sed vel',
@@ -387,7 +360,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/cc0000/ffffff'
   },
   {
-    id: 28,
     name: 'archive.org',
     price: 0.73,
     description:
@@ -396,7 +368,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.png/dddddd/000000'
   },
   {
-    id: 29,
     name: 'samsung.com',
     price: 9.44,
     description:
@@ -405,7 +376,6 @@ const products = [
     imageUrl: 'http://dummyimage.com/250x250.bmp/cc0000/ffffff'
   },
   {
-    id: 30,
     name: 'miitbeian.gov.cn',
     price: 5.95,
     description:
@@ -416,37 +386,37 @@ const products = [
 ]
 
 const carts = [
-  {id: 1, userId: 2, datePurchased: '2018-11-08 14:39:22'},
-  {id: 2, userId: 1, datePurchased: '2019-02-04 04:01:45'},
-  {id: 3, userId: 3, datePurchased: '2019-07-27 21:22:42'},
-  {id: 4, userId: 1, datePurchased: '2019-09-25 16:07:46'},
-  {id: 5, userId: 5, datePurchased: '2019-04-26 23:02:46'},
-  {id: 6, userId: 1, datePurchased: '2019-07-03 11:20:13'},
-  {id: 7, userId: 3, datePurchased: '2019-06-29 01:14:14'},
-  {id: 8, userId: 6, datePurchased: '2019-03-02 03:30:40'},
-  {id: 9, userId: 18, datePurchased: '2019-08-06 13:52:16'},
-  {id: 10, userId: 6, datePurchased: '2019-08-29 21:06:08'},
-  {id: 11, userId: 14, datePurchased: '2019-04-08 07:18:02'},
-  {id: 12, userId: 4, datePurchased: '2019-07-18 15:29:33'},
-  {id: 13, userId: 10, datePurchased: '2019-10-03 15:43:33'},
-  {id: 14, userId: 17, datePurchased: '2019-03-11 18:47:12'},
-  {id: 15, userId: 11, datePurchased: '2019-02-19 00:38:58'},
-  {id: 16, userId: 11, datePurchased: '2018-11-28 07:45:01'},
-  {id: 17, userId: 18, datePurchased: '2019-10-25 15:22:32'},
-  {id: 18, userId: 17, datePurchased: '2018-11-11 21:25:40'},
-  {id: 19, userId: 20, datePurchased: '2018-12-20 21:02:30'},
-  {id: 20, userId: 18, datePurchased: '2019-09-13 17:22:02'},
-  {id: 21, userId: 5, datePurchased: '2019-04-17 02:51:31'},
-  {id: 22, userId: 14, datePurchased: '2019-11-03 00:39:26'},
-  {id: 23, userId: 7, datePurchased: '2019-08-06 23:17:00'},
-  {id: 24, userId: 5, datePurchased: '2019-03-17 22:56:04'},
-  {id: 25, userId: 15, datePurchased: '2019-01-05 17:46:50'},
-  {id: 26, userId: 11, datePurchased: '2019-10-16 07:16:20'},
-  {id: 27, userId: 3, datePurchased: '2019-03-30 19:30:20'},
-  {id: 28, userId: 12, datePurchased: '2019-04-14 20:27:38'},
-  {id: 29, userId: 4, datePurchased: '2019-03-04 14:02:56'},
-  {id: 30, userId: 17, datePurchased: '2019-02-06 13:59:16'},
-  {id: 31, userId: 20}
+  {userId: 2, datePurchased: '2018-11-08 14:39:22'},
+  {userId: 3, datePurchased: '2019-07-27 21:22:42'},
+  {userId: 1, datePurchased: '2019-02-04 04:01:45'},
+  {userId: 1, datePurchased: '2019-09-25 16:07:46'},
+  {userId: 5, datePurchased: '2019-04-26 23:02:46'},
+  {userId: 1, datePurchased: '2019-07-03 11:20:13'},
+  {userId: 3, datePurchased: '2019-06-29 01:14:14'},
+  {userId: 6, datePurchased: '2019-03-02 03:30:40'},
+  {userId: 18, datePurchased: '2019-08-06 13:52:16'},
+  {userId: 6, datePurchased: '2019-08-29 21:06:08'},
+  {userId: 14, datePurchased: '2019-04-08 07:18:02'},
+  {userId: 4, datePurchased: '2019-07-18 15:29:33'},
+  {userId: 10, datePurchased: '2019-10-03 15:43:33'},
+  {userId: 17, datePurchased: '2019-03-11 18:47:12'},
+  {userId: 11, datePurchased: '2019-02-19 00:38:58'},
+  {userId: 11, datePurchased: '2018-11-28 07:45:01'},
+  {userId: 18, datePurchased: '2019-10-25 15:22:32'},
+  {userId: 17, datePurchased: '2018-11-11 21:25:40'},
+  {userId: 20, datePurchased: '2018-12-20 21:02:30'},
+  {userId: 18, datePurchased: '2019-09-13 17:22:02'},
+  {userId: 5, datePurchased: '2019-04-17 02:51:31'},
+  {userId: 14, datePurchased: '2019-11-03 00:39:26'},
+  {userId: 7, datePurchased: '2019-08-06 23:17:00'},
+  {userId: 5, datePurchased: '2019-03-17 22:56:04'},
+  {userId: 12, datePurchased: '2019-01-05 17:46:50'},
+  {userId: 11, datePurchased: '2019-10-16 07:16:20'},
+  {userId: 3, datePurchased: '2019-03-30 19:30:20'},
+  {userId: 12, datePurchased: '2019-04-14 20:27:38'},
+  {userId: 4, datePurchased: '2019-03-04 14:02:56'},
+  {userId: 17, datePurchased: '2019-02-06 13:59:16'},
+  {userId: 20}
 ]
 
 const productsCart = [

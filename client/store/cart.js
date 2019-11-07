@@ -3,7 +3,7 @@ import axios from 'axios'
 //action types
 const CHANGED_QUANTITY = 'CHANGED_QUANTITY'
 const REMOVED_ITEM = 'REMOVED_ITEM'
-const CHECKEDOUT = 'CHECKEDOUT'
+// const CHECKEDOUT = 'CHECKEDOUT'
 const GOT_CART = 'GOT_CART'
 
 //action creators
@@ -17,6 +17,15 @@ const gotCart = cart => ({
   type: GOT_CART,
   cart
 })
+
+const removedItem = productId => ({
+  type: REMOVED_ITEM,
+  productId
+})
+
+// const checkedOut = () => ({
+//   type: CHECKEDOUT
+// })
 
 //thunks
 export const changeQuantity = (quantity, productId) => async dispatch => {
@@ -40,19 +49,42 @@ export const getCart = () => async dispatch => {
   }
 }
 
+export const removeItem = productId => async dispatch => {
+  try {
+    await axios.delete(`/api/carts/delete/${productId}`)
+    dispatch(removedItem(productId))
+  } catch (error) {
+    console.log('error removing item from cart')
+  }
+}
+
+export const checkout = cart => async dispatch => {
+  try {
+    await axios.post('/api/carts/checkout', {cart})
+    dispatch(gotCart([]))
+  } catch (error) {
+    console.log('error checking out')
+  }
+}
+
 //initialState
 const initialState = {}
 
 //reducer
-export default function(state = {}, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case CHANGED_QUANTITY:
       return {...state, [action.productId]: action.quantity}
     case GOT_CART:
+      console.log(action.cart)
       return action.cart.reduce((prev, curr) => {
         prev[curr.productId] = curr.quantity
         return prev
       }, {})
+    case REMOVED_ITEM:
+      let newState = {...state}
+      delete newState[action.productId]
+      return newState
     default:
       return state
   }

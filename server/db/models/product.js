@@ -39,13 +39,18 @@ const Product = db.define('product', {
   }
 })
 
-Product.decrease = async function(num, id) {
-  const product = await this.findByPk(id)
-  let updated
-  if (product) {
-    updated = await product.update({quantity: product.quantity - num})
-    return product
-  }
+Product.updateInventory = async function(cart) {
+  const products = await this.findAll({
+    where: {
+      id: Object.keys(cart)
+    }
+  })
+  await Promise.all(
+    products.map(product => {
+      product.quantity -= cart[product.id]
+      return product.save()
+    })
+  )
 }
 
 module.exports = Product
