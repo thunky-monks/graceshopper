@@ -3,10 +3,16 @@ import axios from 'axios'
 //action types
 const CHANGED_QUANTITY = 'CHANGED_QUANTITY'
 const REMOVED_ITEM = 'REMOVED_ITEM'
-// const CHECKEDOUT = 'CHECKEDOUT'
 const GOT_CART = 'GOT_CART'
+const ADD_ITEM = 'ADD_ITEM'
 
 //action creators
+const addedItem = (quantity, productId) => ({
+  type: ADD_ITEM,
+  quantity,
+  productId
+})
+
 const changedQuantity = (quantity, productId) => ({
   type: CHANGED_QUANTITY,
   quantity,
@@ -28,10 +34,18 @@ const removedItem = productId => ({
 // })
 
 //thunks
+export const addItem = (quantity, productId) => async dispatch => {
+  try {
+    const {data} = await axios.post('/api/carts/add', {quantity, productId})
+    dispatch(addedItem(data.quantity, data.productId))
+  } catch (error) {
+    console.log('error adding item', error)
+  }
+}
+
 export const changeQuantity = (quantity, productId) => async dispatch => {
   try {
     const {data} = await axios.put('/api/carts/edit', {quantity, productId})
-    console.log(data)
     dispatch(changedQuantity(data.quantity, data.productId))
   } catch (error) {
     console.log('error changing quantity', error)
@@ -73,6 +87,8 @@ const initialState = {}
 //reducer
 export default function(state = initialState, action) {
   switch (action.type) {
+    case ADD_ITEM:
+      return {...state, [action.productId]: action.quantity}
     case CHANGED_QUANTITY:
       return {...state, [action.productId]: action.quantity}
     case GOT_CART:

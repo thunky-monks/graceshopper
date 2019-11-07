@@ -15,7 +15,6 @@ export default connect(
     }
 
     render() {
-      console.log(this.props)
       return (
         <div>
           <div className="productHeader">

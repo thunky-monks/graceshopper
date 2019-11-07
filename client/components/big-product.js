@@ -4,14 +4,20 @@ import {connect} from 'react-redux'
 import {getSingleProducts} from '../store/product'
 import {Item, Input, Button, Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
-import {changeQuantity} from '../store/cart'
+import {changeQuantity, addItem} from '../store/cart'
 
 export default connect(
-  state => ({products: state.products}),
+  state => ({
+    products: state.products,
+    cart: state.cart
+  }),
   dispatch => ({
     getSingleProducts: productId => dispatch(getSingleProducts(productId)),
     changeQuantity: (quantity, productId) => () =>
-      dispatch(changeQuantity(quantity, productId))
+      dispatch(changeQuantity(quantity, productId)),
+    addItem: (quantity, productId) => () => {
+      dispatch(addItem(quantity, productId))
+    }
   })
 )(
   class extends React.Component {
@@ -59,21 +65,24 @@ export default connect(
           <br />
           <Input
             label="Quantity:"
-            placeholder={this.state.quantity}
+            placeholder="Quantity"
             onChange={this.handleChange}
           />
           <Button
-            onClick={this.props.changeQuantity(
-              +this.state.quantity,
-              this.props.id
-            )}
+            animated="vertical"
+            onClick={
+              this.props.cart[this.props.products.singleProduct.id]
+                ? this.props.changeQuantity(
+                    this.props.cart[this.props.products.singleProduct.id] +
+                      +this.state.quantity,
+                    this.props.products.singleProduct.id
+                  )
+                : this.props.addItem(
+                    +this.state.quantity,
+                    this.props.products.singleProduct.id
+                  )
+            }
           >
-            Update
-          </Button>
-          <br />
-          <br />
-
-          <Button animated="vertical">
             <Button.Content hidden>Add</Button.Content>
             <Button.Content visible>
               <Icon name="shop" />
