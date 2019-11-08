@@ -18,7 +18,7 @@ export default connect(
       return (
         <div>
           <div className="productHeader">
-            <h1>{ALL_PRODUCTS_HEADER}</h1>
+            <h2>{ALL_PRODUCTS_HEADER}</h2>
           </div>
           <div className="all-view">
             {this.props.products.products.map(product => (

@@ -1,5 +1,5 @@
-body {
-  font-family: sans-serif;
+* {
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -10,15 +10,33 @@ label {
   display: block;
 }
 
+#Navbar {
+  background-color: darkgrey;
+}
+
+nav {
+  padding: 0px;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 nav a {
   display: inline-block;
   margin: 1em;
+  color: white;
+  text-decoration: underline;
+  font-size: 12pt;
+  align-self: center;
+  flex-direction: row;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
 }
+
 main {
   align-items: center;
   display: flex;
@@ -34,17 +52,81 @@ main {
   margin-right: 10%;
   justify-content: space-between;
 }
+
 .productHeader {
+  margin-top: 10px;
   margin-bottom: 15px;
+  text-align: center;
 }
+
 .single-big-view {
   margin-top: 2%;
   margin-left: 5%;
   margin-right: 5%;
 }
+
 #singleViewHeader {
   color: black;
   font-weight: bold;
   font-size: 18pt;
   margin-top: 10px;
+}
+
+#small-card-header {
+  color: black;
+  font-weight: bold;
+  font-size: 14pt;
+}
+
+#small-card-description {
+  color: darkgray;
+  text-align: initial;
+  margin-top: 5px;
+}
+
+.small-card-image {
+  padding: 0px;
+  margin-right: 0px;
+}
+
+.ui.card {
+  width: 278px;
+  background-color: white;
+}
+
+.ui.card:first-child {
+  margin: 1em 0;
+}
+
+#big-view-description {
+  font-weight: bold;
+}
+
+#SITE-HEADER {
+  margin-bottom: 0px;
+  padding: 0px;
+  margin: 0px;
+  background-color: darkgray;
+}
+
+form {
+  margin-left: 45%;
+  margin-right: 45%;
+}
+
+.signInWithGoogle {
+  align-content: center;
+  margin-left: 45%;
+  margin-right: 45%;
+}
+
+.shopping-cart {
+  margin-top: 15px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.removeCartButton {
+  height: 35px;
+  align-self: center;
 }
