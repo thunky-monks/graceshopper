@@ -6,7 +6,7 @@ import {logout} from '../store'
 import {WEBSITE_HEADER} from '../strings'
 import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, userId}) => (
   <div id="Navbar">
     <nav>
       <div>
@@ -20,7 +20,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link to="/cart">
+          <Link to={`/users/${userId}/cart/`}>
             <ShoppingCartTwoToneIcon />
           </Link>
         </div>
@@ -45,7 +45,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 

@@ -33,6 +33,7 @@ export default connect(
     }
 
     render() {
+      console.log('TRYNA RENDER CART')
       const theCart = this.calcCart()
       const theCartCount = theCart.reduce(
         (total, item) => total + this.props.cart[item.id],
