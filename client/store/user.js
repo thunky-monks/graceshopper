@@ -4,7 +4,7 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_USER = 'GET_USER'
+export const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 
 /**
@@ -15,7 +15,7 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
+const getUser = (user, cart) => ({type: GET_USER, user, cart})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -23,8 +23,11 @@ const removeUser = () => ({type: REMOVE_USER})
  */
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || defaultUser))
+    const userRes = await axios.get('/auth/me')
+    console.log(userRes.data)
+    const cartRes = await axios.get(`/api/users/${userRes.data.id}/cart`)
+    console.log(cartRes.data)
+    dispatch(getUser(userRes.data || defaultUser, cartRes.data))
   } catch (err) {
     console.error(err)
   }

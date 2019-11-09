@@ -14,13 +14,16 @@ import {getAllProducts} from './store/product'
  */
 class Routes extends Component {
   componentDidMount() {
+    console.log(this.props.isLoggedIn)
+    console.log(this.props.userId)
     this.props.loadInitialData()
     this.props.getAllProducts()
-    this.props.getCart()
+    // this.props.getCart(this.props.userId)
   }
 
   render() {
     const {isLoggedIn} = this.props
+    // this.props.getCart(this.props.userId)
 
     return (
       <Switch>
@@ -51,6 +54,7 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
+    userId: state.user.id,
     products: state.products,
     cart: state.cart
   }
@@ -64,7 +68,7 @@ const mapDispatch = dispatch => {
     getAllProducts() {
       dispatch(getAllProducts())
     },
-    getCart: () => dispatch(getCart())
+    getCart: userId => dispatch(getCart(userId))
   }
 }
 

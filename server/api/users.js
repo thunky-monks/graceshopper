@@ -1,15 +1,9 @@
 const router = require('express').Router()
 // const {User} = require('../db/models')
+const {checkUser} = require('../utils')
 module.exports = router
 
-const checkUser = (req, res, next) => {
-  console.log('SERVER SAYS REQ.USER.ID:', req.user.id)
-  console.log('SERVER SAYS REQ.PARAMS.ID:', req.user.id)
-  if (req.user.id === req.params.id) next()
-  else res.sendStatus(503)
-}
-
-router.use(':id/cart', checkUser, require('./cart'))
+router.use('/:id/cart', checkUser, require('./cart'))
 
 // router.get('/', async (req, res, next) => {
 //   try {
