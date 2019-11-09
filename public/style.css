@@ -11,12 +11,9 @@ label {
 }
 
 #Navbar {
-  background-color: darkgrey;
 }
 
 nav {
-  padding: 0px;
-  background-color: darkgray;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +22,7 @@ nav {
 nav a {
   display: inline-block;
   margin: 1em;
-  color: white;
+  color: black;
   text-decoration: underline;
   font-size: 12pt;
   align-self: center;
@@ -79,7 +76,6 @@ main {
 }
 
 #small-card-description {
-  color: darkgray;
   text-align: initial;
   margin-top: 5px;
 }
@@ -106,7 +102,6 @@ main {
   margin-bottom: 0px;
   padding: 0px;
   margin: 0px;
-  background-color: darkgray;
 }
 
 form {
@@ -128,5 +123,10 @@ form {
 
 .removeCartButton {
   height: 35px;
+  align-self: center;
+}
+
+.profile {
+  text-align: center;
   align-self: center;
 }
