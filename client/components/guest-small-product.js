@@ -3,9 +3,8 @@ import React from 'react'
 import {Button, Card, Icon, Image} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {changeQuantity, addItem} from '../store/cart'
 
-export default class GuestSmallProduct extends Component {
+export default class GuestSmallProduct extends React.Component {
   constructor(props) {
     super(props)
     this.addItemStorage = this.addItemStorage.bind(this)
@@ -13,7 +12,8 @@ export default class GuestSmallProduct extends Component {
 
   addItemStorage(productId) {
     if (!localStorage.cart) {
-      let prodQuantObj = {productId: 1}
+      let prodQuantObj = {}
+      prodQuantObj[productId] = 1
       localStorage.setItem('cart', JSON.stringify(prodQuantObj))
     } else {
       let localCart = JSON.parse(localStorage.getItem('cart'))
@@ -45,7 +45,7 @@ export default class GuestSmallProduct extends Component {
           <br />
           <Button
             animated="vertical"
-            onClick={this.addItemStorage(this.props.id)}
+            onClick={() => this.addItemStorage(this.props.id)}
           >
             <Button.Content hidden>Add</Button.Content>
             <Button.Content visible>

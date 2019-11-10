@@ -15,7 +15,6 @@ export default connect(
     }
 
     render() {
-      console.log('logged in view')
       return (
         <div>
           <div className="productHeader">

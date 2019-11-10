@@ -2,7 +2,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getAllProducts} from '../store/product'
-import SmallProduct from './small-product'
+import GuestSmallProduct from './guest-small-product'
 import {ALL_PRODUCTS_HEADER} from '../strings'
 
 export default connect(
@@ -15,7 +15,7 @@ export default connect(
     }
 
     render() {
-      // console.log('guest cart test')
+      console.log('TESTING THIS COMPONENT')
       return (
         <div>
           <div className="productHeader">
@@ -23,7 +23,7 @@ export default connect(
           </div>
           <div className="all-view">
             {this.props.products.products.map(product => (
-              <SmallProduct key={product.id} {...product} />
+              <GuestSmallProduct key={product.id} {...product} />
             ))}
           </div>
         </div>

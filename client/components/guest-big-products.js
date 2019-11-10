@@ -8,35 +8,52 @@ import {changeQuantity, addItem} from '../store/cart'
 
 export default connect(
   state => ({
-    products: state.products,
-    cart: state.cart
+    products: state.products
   }),
   dispatch => ({
-    getSingleProducts: productId => dispatch(getSingleProducts(productId)),
-    changeQuantity: (quantity, productId) => () =>
-      dispatch(changeQuantity(quantity, productId)),
-    addItem: (quantity, productId) => () => {
-      dispatch(addItem(quantity, productId))
-    }
+    getSingleProducts: productId => dispatch(getSingleProducts(productId))
   })
 )(
-  class extends React.Component {
+  class GuestBigProduct extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        quantity: this.props.quantity
+        quantity: 1
       }
       this.handleChange = this.handleChange.bind(this)
+      this.addItemStorage = this.addItemStorage.bind(this)
     }
+
+    // handleChange(event) {
+    //   this.setState({[event.target.name]: event.target.value})
+    // }
     handleChange(event) {
       this.setState({quantity: event.target.value})
     }
+
     componentDidMount() {
       this.props.getSingleProducts(this.props.match.params.id)
     }
 
+    addItemStorage(productId, quantity) {
+      if (!localStorage.cart) {
+        let prodQuantObj = {}
+
+        prodQuantObj[productId] = +quantity
+        localStorage.setItem('cart', JSON.stringify(prodQuantObj))
+      } else {
+        let localCart = JSON.parse(localStorage.getItem('cart'))
+        if (localCart[productId]) {
+          localCart[productId] += +quantity
+        } else {
+          localCart[productId] = +quantity
+        }
+        localStorage.setItem('cart', JSON.stringify(localCart))
+      }
+    }
+
     render() {
-      console.log(this.props)
+      console.log(this.state.quantity)
       return (
         <div className="single-big-view">
           <div>
@@ -63,24 +80,21 @@ export default connect(
             </Item>
           </div>
           <br />
+
           <Input
-            label="Quantity:"
-            placeholder="Quantity"
+            label="quantity:"
+            name="quantity"
+            // placeholder = {this.state.quantity}
             onChange={this.handleChange}
+            value={this.state.quantity}
           />
           <Button
             animated="vertical"
-            onClick={
-              this.props.cart[this.props.products.singleProduct.id]
-                ? this.props.changeQuantity(
-                    this.props.cart[this.props.products.singleProduct.id] +
-                      +this.state.quantity,
-                    this.props.products.singleProduct.id
-                  )
-                : this.props.addItem(
-                    +this.state.quantity,
-                    this.props.products.singleProduct.id
-                  )
+            onClick={() =>
+              this.addItemStorage(
+                this.props.products.singleProduct.id,
+                this.state.quantity
+              )
             }
           >
             <Button.Content hidden>Add</Button.Content>
