@@ -28,6 +28,8 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
+    // console.log(this.props.isLoggedIn)
+    console.log('test')
 
     return (
       <Switch>
@@ -45,9 +47,9 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
-            <Route exact path="/products" component={GuestAllProducts} />
+            {<Route exact path="/products" component={GuestAllProducts} />}
             <Route path="/products/:id" component={GuestBigProduct} />
-            <Route path="/cart" component={GuestCartView} />
+            <Route path="/cart" component={GuestCartView} /> */}
           </Switch>
         )}
         {isLoggedIn && (

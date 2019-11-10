@@ -15,6 +15,7 @@ export default connect(
     }
 
     render() {
+      console.log('guest cart test')
       return (
         <div>
           <div className="productHeader">

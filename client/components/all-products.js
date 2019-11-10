@@ -9,12 +9,13 @@ export default connect(
   state => ({products: state.products}),
   dispatch => ({getAllProducts: () => dispatch(getAllProducts())})
 )(
-  class extends React.Component {
+  class AllProducts extends React.Component {
     componentDidMount() {
       this.props.getAllProducts()
     }
 
     render() {
+      console.log('logged in view')
       return (
         <div>
           <div className="productHeader">
