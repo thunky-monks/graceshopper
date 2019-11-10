@@ -4,8 +4,19 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {WEBSITE_HEADER} from '../strings'
-import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone'
+import {withStyles} from '@material-ui/core/styles'
+import IconButton from '@material-ui/core/IconButton'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import Badge from '@material-ui/core/Badge'
+
+const StyledBadge1 = withStyles(theme => ({
+  badge: {
+    right: -3,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px'
+  }
+}))(Badge)
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -24,8 +35,12 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <a className="item" href="#" onClick={handleClick}>
               Logout
             </a>
-            <Link class="item" to="/cart">
-              <ShoppingCartTwoToneIcon />
+            <Link className="item" to="/cart">
+              <IconButton aria-label="cart">
+                <StyledBadge1 badgeContent={4} color="primary">
+                  <ShoppingCartIcon />
+                </StyledBadge1>
+              </IconButton>
             </Link>
           </div>
         </div>
@@ -45,8 +60,12 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Link class="item" to="/signup">
               Sign Up
             </Link>
-            <Link class="item" to="/cart">
-              <ShoppingCartTwoToneIcon />{' '}
+            <Link className="item" to="/cart">
+              <IconButton aria-label="cart">
+                <StyledBadge1 badgeContent={4} color="primary">
+                  <ShoppingCartIcon />
+                </StyledBadge1>
+              </IconButton>
             </Link>
           </div>
         </div>
