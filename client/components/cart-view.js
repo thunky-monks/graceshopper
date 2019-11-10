@@ -14,7 +14,7 @@ export default connect(
     checkout: cart => () => dispatch(checkout(cart))
   })
 )(
-  class CartView extends React {
+  class extends React {
     constructor(props) {
       super(props)
 
