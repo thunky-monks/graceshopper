@@ -20,14 +20,16 @@ export default connect(
 )(props => (
   <Card>
     <Link to={`/products/${props.id}`}>
-      <Image src={props.imageURL} />
+      <Image className="small-card-image" src={props.imageURL} />
     </Link>
     <Card.Content>
       <Link to={`/products/${props.id}`}>
-        <Card.Header>{props.name}</Card.Header>
+        <Card.Header id="small-card-header">{props.name}</Card.Header>
       </Link>
       {/* <Card.Meta>MANUFACTURER GOES HERE</Card.Meta> */}
-      <Card.Description>{props.description}</Card.Description>
+      <Card.Description id="small-card-description">
+        {props.description}
+      </Card.Description>
     </Card.Content>
     <Card.Content extra>
       <Icon name="dollar sign" />

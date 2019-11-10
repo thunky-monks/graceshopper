@@ -41,6 +41,7 @@ export default connect(null, dispatch => ({
               onChange={this.handleChange}
             />
             <Button
+              primary
               onClick={this.props.changeQuantity(
                 +this.state.quantity,
                 this.props.id
@@ -49,7 +50,11 @@ export default connect(null, dispatch => ({
               Update
             </Button>
           </Item.Content>
-          <Button color="red" onClick={this.props.removeItem(this.props.id)}>
+          <Button
+            color="red"
+            onClick={this.props.removeItem(this.props.id)}
+            className="removeCartButton"
+          >
             Remove from Cart
           </Button>
         </Item>

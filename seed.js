@@ -151,11 +151,10 @@ const products = [
     description:
       'in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec',
     quantity: 27,
-    imageUrl:
-      'http://fixstream.com/wp-content/uploads/2015/08/oracle-logo-square.jpg'
+    imageUrl: 'https://t2.rbxcdn.com/36c52a7a73e36118e96c8eab16697b1d'
   },
   {
-    name: 'youtube1.com',
+    name: 'amazon.com',
     price: 9.03,
     description:
       'varius ut blandit non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia',
@@ -168,7 +167,8 @@ const products = [
     description:
       'risus praesent lectus vestibulum quam sapien varius ut blandit non interdum in ante vestibulum',
     quantity: 10,
-    imageUrl: 'http://dummyimage.com/250x250.png/ff4444/ffffff'
+    imageUrl:
+      'http://img.talkandroid.com/uploads/2016/06/youtube-logo-450x450.png'
   },
   {
     name: 'e-recht24.de',

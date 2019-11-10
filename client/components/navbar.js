@@ -4,32 +4,39 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {WEBSITE_HEADER} from '../strings'
+import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>{WEBSITE_HEADER}</h1>
+  <div id="Navbar">
     <nav>
+      <div>
+        <h1 id="SITE-HEADER">{WEBSITE_HEADER}</h1>
+      </div>
       {isLoggedIn ? (
-        <div>
+        <div className="navBar">
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/products">Our Sites</Link>
-          <Link to="/cart">Cart</Link>
+          <Link to="/home">Profile</Link>
+          <Link to="/products">Home</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <Link to="/cart">
+            <ShoppingCartTwoToneIcon />
+          </Link>
         </div>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          <Link to="/products">Our Sites</Link>
-          <Link to="/cart">Cart</Link>
+          <Link to="/products">Home</Link>
+          <Link to="/cart">
+            <ShoppingCartTwoToneIcon />{' '}
+          </Link>
         </div>
       )}
     </nav>
-    <hr />
+    <hr color="black" />
   </div>
 )
 
