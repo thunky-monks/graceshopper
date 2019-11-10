@@ -5,7 +5,27 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {changeQuantity, addItem} from '../store/cart'
 
-class GuestSmallProduct extends Component {
+export default class GuestSmallProduct extends Component {
+  constructor(props) {
+    super(props)
+    this.addItemStorage = this.addItemStorage.bind(this)
+  }
+
+  addItemStorage(productId) {
+    if (!localStorage.cart) {
+      let prodQuantObj = {productId: 1}
+      localStorage.setItem('cart', JSON.stringify(prodQuantObj))
+    } else {
+      let localCart = JSON.parse(localStorage.getItem('cart'))
+    }
+    if (localStorage.cart[strProdId]) {
+      let changeQuantity = JSON.parse(localStorage.getItem(strProdId))
+      changeQuantity++
+      localStorage.cart[strProdId] = JSON.stringify(change)
+    }
+    localStorage.setItem('cart')
+  }
+
   render() {
     return (
       <Card>
