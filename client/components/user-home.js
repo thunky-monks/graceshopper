@@ -14,7 +14,7 @@ export const UserHome = props => {
       <br />
       <i className="circular user icon" />
       <br />
-      {email}
+      <text>{email}</text>
     </div>
   )
 }
