@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import {CART_HEADER} from '../strings'
 import {connect} from 'react-redux'
+import GuestCartProduct from './guest-cart-product'
 
-import CartProduct from './cart-product'
-
-import {getCart, checkout} from '../store/cart'
+// import {getCart, checkout} from '../store/cart'
 import {Item, Button} from 'semantic-ui-react'
 
 export default connect(
@@ -17,49 +16,49 @@ export default connect(
   class GuestCartView extends Component {
     constructor(props) {
       super(props)
-
+      this.state = {
+        guestCart: {}
+      }
       this.calcCart = this.calcCart.bind(this)
     }
 
     componentDidMount() {
-      //   this.props.getCart()
-      localStorage.setItem('erin', 100)
-      // console.log(localStorage)
+      let localStorageObj = JSON.parse(localStorage.getItem('cart'))
+      this.setState({guestCart: localStorageObj})
     }
 
     calcCart() {
       console.log('calculating the cart!')
       return this.props.products.products.filter(
-        product => this.props.cart[product.id]
+        product => this.state.guestCart[product.id]
       )
     }
 
     render() {
+      //COME BACK TO THIS AND UNDERSTAND THIS FUNCTION
       const theCart = this.calcCart()
       const theCartCount = theCart.reduce(
-        (total, item) => total + this.props.cart[item.id],
+        (total, item) => total + this.state.guestCart[item.id],
         0
       )
       const theTotal = theCart
         .reduce(
-          (total, item) => total + item.price * this.props.cart[item.id],
+          (total, item) => total + item.price * this.state.guestCart[item.id],
           0
         )
         .toFixed(2)
 
-      console.log(this.props)
       return (
         <div>
           <div className="cartHeader">
             <h1>{CART_HEADER}</h1>
-            <h1>THIS IS THE GUEST VIEW MUDAFUKA</h1>
           </div>
           <Item.Group>
             {theCart.map(product => (
-              <CartProduct
+              <GuestCartProduct
                 key={product.id}
                 {...product}
-                quantity={this.props.cart[product.id]}
+                quantity={this.state.guestCart[product.id]}
               />
             ))}
           </Item.Group>
@@ -70,7 +69,7 @@ export default connect(
             </h3>
             <Button
               color="olive"
-              onClick={this.props.checkout(this.props.cart)}
+              onClick={this.props.checkout(this.state.guestCart)}
             >
               Checkout
             </Button>
