@@ -8,7 +8,8 @@ import {Accordion} from 'semantic-ui-react'
 class UserHome extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {activeIndex: 0}
+    this.state = {activeIndex: -1}
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
@@ -16,10 +17,13 @@ class UserHome extends React.Component {
   }
 
   handleClick(e, titleProps) {
+    console.log('>>>>>CLICKED!')
     const {index} = titleProps
+    console.log('>>>INDEX', index)
     const {activeIndex} = this.state
-    const {newIndex} = activeIndex === index ? -1 : index
-
+    console.log('>>>ACTIVE INDEX', activeIndex)
+    const newIndex = activeIndex === index ? -1 : index
+    console.log('>>>NEW INDEX', newIndex)
     this.setState({activeIndex: newIndex})
   }
 
@@ -34,11 +38,20 @@ class UserHome extends React.Component {
         <h3>{user.email}</h3>
         <h3>Order History</h3>
         <Accordion>
-          {this.props.orderHistory.length ? (
+          {this.props.orderHistory.map((order, i) => (
+            <OrderHistoryPanel
+              order={order}
+              activeIndex={this.state.activeIndex}
+              index={i}
+              key={order.id}
+              handleClick={this.handleClick}
+            />
+          ))}
+          {/* {this.props.orderHistory.length ? (
             <OrderHistoryPanel order={this.props.orderHistory[0]} />
           ) : (
             ''
-          )}
+          )} */}
         </Accordion>
       </div>
     )

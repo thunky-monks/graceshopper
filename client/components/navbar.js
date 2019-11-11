@@ -18,7 +18,17 @@ const StyledBadge1 = withStyles(theme => ({
   }
 }))(Badge)
 
-const Navbar = ({handleClick, isLoggedIn, userId}) => (
+function calcCartTotal(cart) {
+  let total = 0
+  for (let i in cart) {
+    if (i > 0) {
+      total += cart[i]
+    }
+  }
+  return total
+}
+
+const Navbar = ({handleClick, isLoggedIn, userId, cart}) => (
   <div>
     {isLoggedIn ? (
       <div className="nav">
@@ -37,7 +47,10 @@ const Navbar = ({handleClick, isLoggedIn, userId}) => (
             </a>
             <Link className="item" to={`/users/${userId}/cart/`}>
               <IconButton aria-label="cart">
-                <StyledBadge1 badgeContent={4} color="primary">
+                <StyledBadge1
+                  badgeContent={calcCartTotal(cart)}
+                  color="primary"
+                >
                   <ShoppingCartIcon />
                 </StyledBadge1>
               </IconButton>
@@ -80,7 +93,8 @@ const Navbar = ({handleClick, isLoggedIn, userId}) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    userId: state.user.id
+    userId: state.user.id,
+    cart: state.cart
   }
 }
 
