@@ -37,14 +37,12 @@ export default connect(
     }
 
     render() {
-      console.log('ID', this.props.match.params.id)
-      console.log(this.props.products.products)
       if (
         !this.props.products.products.some(
           product => product.id === +this.props.match.params.id
         )
       )
-        return <Redirect to="/products" />
+        return <Redirect to="/product-not-found" />
       return (
         <div className="single-big-view">
           <div>

@@ -24,9 +24,7 @@ const removeUser = () => ({type: REMOVE_USER})
 export const me = () => async dispatch => {
   try {
     const userRes = await axios.get('/auth/me')
-    console.log(userRes.data)
     const cartRes = await axios.get(`/api/users/${userRes.data.id}/cart`)
-    console.log(cartRes.data)
     dispatch(getUser(userRes.data || defaultUser, cartRes.data))
   } catch (err) {
     console.error(err)
@@ -34,15 +32,20 @@ export const me = () => async dispatch => {
 }
 
 export const auth = (email, password, method) => async dispatch => {
-  let res
+  let userRes
   try {
-    res = await axios.post(`/auth/${method}`, {email, password})
+    userRes = await axios.post(`/auth/${method}`, {email, password})
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
 
   try {
-    dispatch(getUser(res.data))
+    if (method === 'signup') {
+      dispatch(getUser(userRes.data, []))
+    } else {
+      const cartRes = await axios.get(`/api/users/${userRes.data.id}/cart`)
+      dispatch(getUser(userRes.data, cartRes.data))
+    }
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
