@@ -54,7 +54,6 @@ export const changeQuantity = (quantity, productId) => async dispatch => {
 
 export const getCart = () => async dispatch => {
   try {
-    console.log('we are in the getCart thunk')
     const {data} = await axios.get('/api/carts')
     console.log('we got the data')
     dispatch(gotCart(data))
@@ -92,7 +91,6 @@ export default function(state = initialState, action) {
     case CHANGED_QUANTITY:
       return {...state, [action.productId]: action.quantity}
     case GOT_CART:
-      console.log(action.cart)
       return action.cart.reduce((prev, curr) => {
         prev[curr.productId] = curr.quantity
         return prev

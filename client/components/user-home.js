@@ -9,12 +9,12 @@ export const UserHome = props => {
   const {email} = props
 
   return (
-    <div>
-      <h3>
-        Welcome:
-        <br />
-        {email}
-      </h3>
+    <div className="profile">
+      <h2 className="ui center aligned icon header" />
+      <br />
+      <i className="circular user icon" />
+      <br />
+      <text>{email}</text>
     </div>
   )
 }
