@@ -8,12 +8,13 @@ export default class GuestCartProduct extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      quantity: this.props.quantity
+      quantity: this.props.quantity,
+      check: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.calculateItemTotal = this.calculateItemTotal.bind(this)
     this.changeStorageQuantity = this.changeStorageQuantity.bind(this)
-    this.removeItem = this.removeItem.bind(this)
+    // this.removeItem = this.removeItem.bind(this)
   }
 
   handleChange(event) {
@@ -24,16 +25,15 @@ export default class GuestCartProduct extends Component {
     return (this.props.price * this.props.quantity).toFixed(2)
   }
 
-  removeItem(productId) {
-    let localCart = JSON.parse(localStorage.getItem('cart'))
-    delete localCart[productId]
-    localStorage.setItem('cart', JSON.stringify(localCart))
-    this.changeState()
-  }
+  //   removeItem(productId) {
+  //     let localCart = JSON.parse(localStorage.getItem('cart'))
+  //     delete localCart[productId]
+  //     localStorage.setItem('cart', JSON.stringify(localCart))
+  //   }
 
-  changeState() {
-    this.setState({compStatus: !status})
-  }
+  //   changeState() {
+  //     this.setState({check: !this.state.check})
+  //   }
 
   changeStorageQuantity(productId, quantity) {
     let localCart = JSON.parse(localStorage.getItem('cart'))
@@ -65,7 +65,7 @@ export default class GuestCartProduct extends Component {
         </Item.Content>
         <Button
           color="red"
-          onClick={() => this.removeItem(this.props.id)}
+          onClick={() => this.props.removeItem(this.props.id)}
           className="removeCartButton"
         >
           Remove from Cart

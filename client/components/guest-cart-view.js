@@ -20,11 +20,19 @@ export default connect(
         guestCart: {}
       }
       this.calcCart = this.calcCart.bind(this)
+      this.removeItem = this.removeItem.bind(this)
     }
 
     componentDidMount() {
       let localStorageObj = JSON.parse(localStorage.getItem('cart'))
       this.setState({guestCart: localStorageObj})
+    }
+
+    removeItem(productId) {
+      let localCart = JSON.parse(localStorage.getItem('cart'))
+      delete localCart[productId]
+      localStorage.setItem('cart', JSON.stringify(localCart))
+      this.setState({guestCart: localCart})
     }
 
     calcCart() {
@@ -59,6 +67,7 @@ export default connect(
                 key={product.id}
                 {...product}
                 quantity={this.state.guestCart[product.id]}
+                removeItem={this.removeItem}
               />
             ))}
           </Item.Group>
