@@ -5,6 +5,20 @@ module.exports = router
 
 router.use('/:id/cart', checkUser, require('./cart'))
 
+router.get('/:id/history', checkUser, async (req, res, next) => {
+  try {
+    const allOrders = await Cart.findAll({
+      where: {
+        userId: req.params.id
+      }
+    })
+    res.json(allOrders)
+  } catch (error) {
+    next(error)
+  }
+})
+
+//FOR ADMINS?
 // router.get('/', async (req, res, next) => {
 //   try {
 //     const users = await User.findAll({
