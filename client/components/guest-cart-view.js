@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {CART_HEADER} from '../strings'
 import {connect} from 'react-redux'
 import GuestCartProduct from './guest-cart-product'
+import Checkout from './stripe-checkout'
 import StripeCheckout from 'react'
 import {Item, Button} from 'semantic-ui-react'
 
@@ -81,6 +82,7 @@ export default connect(
             >
               Checkout
             </Button>
+            <Checkout onClick={console.log('TESTING THIS BUTTON')} />
           </div>
         </div>
       )

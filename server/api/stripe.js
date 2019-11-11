@@ -1,7 +1,4 @@
-const stripe = require('stripe')(STRIPE_API_KEY)
-// const stripe = require('stripe')(stripeApiKey);
-
-;(async () => {
+const stripe = require('stripe')(process.env.STRIPE_API_KEY)(async () => {
   const charge = await stripe.charges.create({
     amount: 1000,
     currency: 'usd',
