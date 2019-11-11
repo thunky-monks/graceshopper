@@ -10,28 +10,6 @@ label {
   display: block;
 }
 
-#Navbar {
-  background-color: darkgrey;
-}
-
-nav {
-  padding: 0px;
-  background-color: darkgray;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
-  color: white;
-  text-decoration: underline;
-  font-size: 12pt;
-  align-self: center;
-  flex-direction: row;
-}
-
 form div {
   margin: 1em;
   display: inline-block;
@@ -79,7 +57,6 @@ main {
 }
 
 #small-card-description {
-  color: darkgray;
   text-align: initial;
   margin-top: 5px;
 }
@@ -103,19 +80,11 @@ main {
 }
 
 #SITE-HEADER {
-  margin-bottom: 0px;
-  padding: 0px;
-  margin: 0px;
-  background-color: darkgray;
+  text-align: center;
 }
 
-form {
-  margin-left: 45%;
-  margin-right: 45%;
-}
-
-.signInWithGoogle {
-  align-content: center;
+.Form {
+  margin-top: 7%;
   margin-left: 45%;
   margin-right: 45%;
 }
@@ -129,4 +98,22 @@ form {
 .removeCartButton {
   height: 35px;
   align-self: center;
+}
+
+.profile {
+  text-align: center;
+  align-self: center;
+}
+
+#googleButton a {
+  color: white;
+}
+#googleButton {
+  align-self: center;
+  width: 180px;
+  background-color: red;
+}
+
+#price {
+  color: black;
 }

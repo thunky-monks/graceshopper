@@ -4,39 +4,73 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {WEBSITE_HEADER} from '../strings'
-import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone'
+import {withStyles} from '@material-ui/core/styles'
+import IconButton from '@material-ui/core/IconButton'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import Badge from '@material-ui/core/Badge'
+
+const StyledBadge1 = withStyles(theme => ({
+  badge: {
+    right: -3,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px'
+  }
+}))(Badge)
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div id="Navbar">
-    <nav>
-      <div>
-        <h1 id="SITE-HEADER">{WEBSITE_HEADER}</h1>
-      </div>
-      {isLoggedIn ? (
-        <div className="navBar">
+  <div>
+    {isLoggedIn ? (
+      <div className="nav">
+        <h2 id="SITE-HEADER">{WEBSITE_HEADER}</h2>
+        <div className="ui secondary menu">
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Profile</Link>
-          <Link to="/products">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <Link to="/cart">
-            <ShoppingCartTwoToneIcon />
+          <Link to="/home" class="item">
+            <AccountCircleIcon />
           </Link>
+          <Link class="item" to="/products">
+            Home
+          </Link>
+          <div className="right menu">
+            <a className="item" href="#" onClick={handleClick}>
+              Logout
+            </a>
+            <Link className="item" to="/cart">
+              <IconButton aria-label="cart">
+                <StyledBadge1 badgeContent={4} color="primary">
+                  <ShoppingCartIcon />
+                </StyledBadge1>
+              </IconButton>
+            </Link>
+          </div>
         </div>
-      ) : (
-        <div>
+      </div>
+    ) : (
+      <div>
+        <h2 id="SITE-HEADER">{WEBSITE_HEADER}</h2>
+        <div className="ui secondary menu">
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/products">Home</Link>
-          <Link to="/cart">
-            <ShoppingCartTwoToneIcon />{' '}
+          <Link class="item" to="/products">
+            Home
           </Link>
+          <div className="right menu">
+            <Link class="item" to="/login">
+              Login
+            </Link>
+            <Link class="item" to="/signup">
+              Sign Up
+            </Link>
+            <Link className="item" to="/cart">
+              <IconButton aria-label="cart">
+                <StyledBadge1 badgeContent={4} color="primary">
+                  <ShoppingCartIcon />
+                </StyledBadge1>
+              </IconButton>
+            </Link>
+          </div>
         </div>
-      )}
-    </nav>
-    <hr color="black" />
+      </div>
+    )}
   </div>
 )
 
