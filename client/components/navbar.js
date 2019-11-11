@@ -18,7 +18,7 @@ const StyledBadge1 = withStyles(theme => ({
   }
 }))(Badge)
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, userId}) => (
   <div>
     {isLoggedIn ? (
       <div className="nav">
@@ -35,7 +35,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <a className="item" href="#" onClick={handleClick}>
               Logout
             </a>
-            <Link className="item" to="/cart">
+            <Link className="item" to={`/users/${userId}/cart/`}>
               <IconButton aria-label="cart">
                 <StyledBadge1 badgeContent={4} color="primary">
                   <ShoppingCartIcon />
@@ -79,7 +79,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userId: state.user.id
   }
 }
 

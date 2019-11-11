@@ -2,7 +2,14 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, AllProducts, BigProduct} from './components'
+import {
+  Login,
+  Signup,
+  UserHome,
+  AllProducts,
+  BigProduct,
+  NotFound
+} from './components'
 import {me} from './store'
 import CartView from './components/cart-view'
 import {getCart} from './store/cart'
@@ -14,13 +21,16 @@ import {getAllProducts} from './store/product'
  */
 class Routes extends Component {
   componentDidMount() {
+    console.log(this.props.isLoggedIn)
+    console.log(this.props.userId)
     this.props.loadInitialData()
     this.props.getAllProducts()
-    this.props.getCart()
+    // this.props.getCart(this.props.userId)
   }
 
   render() {
     const {isLoggedIn} = this.props
+    // this.props.getCart(this.props.userId)
 
     return (
       <Switch>
@@ -29,7 +39,8 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={BigProduct} />
-        <Route path="/cart" component={CartView} />
+        <Route path="/users/:id/cart" component={CartView} />
+        <Route path="/product-not-found" component={NotFound} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -51,6 +62,7 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
+    userId: state.user.id,
     products: state.products,
     cart: state.cart
   }
@@ -64,7 +76,7 @@ const mapDispatch = dispatch => {
     getAllProducts() {
       dispatch(getAllProducts())
     },
-    getCart: () => dispatch(getCart())
+    getCart: userId => dispatch(getCart(userId))
   }
 }
 

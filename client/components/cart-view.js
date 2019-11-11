@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {CART_HEADER} from '../strings'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 import CartProduct from './cart-product'
 
@@ -8,7 +9,7 @@ import {getCart, checkout} from '../store/cart'
 import {Item, Button} from 'semantic-ui-react'
 
 export default connect(
-  state => ({products: state.products, cart: state.cart}),
+  state => ({products: state.products, cart: state.cart, user: state.user}),
   dispatch => ({
     getCart: () => dispatch(getCart()),
     checkout: cart => () => dispatch(checkout(cart))
@@ -21,9 +22,9 @@ export default connect(
       this.calcCart = this.calcCart.bind(this)
     }
 
-    componentDidMount() {
-      this.props.getCart()
-    }
+    // componentDidMount() {
+    //   this.props.getCart()
+    // }
 
     calcCart() {
       console.log('calculating the cart!')
@@ -33,6 +34,8 @@ export default connect(
     }
 
     render() {
+      if (+this.props.match.params.id !== this.props.user.id)
+        return <Redirect to="/products" />
       const theCart = this.calcCart()
       const theCartCount = theCart.reduce(
         (total, item) => total + this.props.cart[item.id],
