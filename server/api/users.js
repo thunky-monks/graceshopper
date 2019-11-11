@@ -1,6 +1,9 @@
-// const router = require('express').Router()
+const router = require('express').Router()
 // const {User} = require('../db/models')
-// module.exports = router
+const {checkUser} = require('../utils')
+module.exports = router
+
+router.use('/:id/cart', checkUser, require('./cart'))
 
 // router.get('/', async (req, res, next) => {
 //   try {

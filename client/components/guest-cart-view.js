@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import {CART_HEADER} from '../strings'
 import {connect} from 'react-redux'
 import GuestCartProduct from './guest-cart-product'
-
-// import {getCart, checkout} from '../store/cart'
+import StripeCheckout from 'react'
 import {Item, Button} from 'semantic-ui-react'
 
 export default connect(

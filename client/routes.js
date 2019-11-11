@@ -11,7 +11,8 @@ import {
   CartView,
   GuestAllProducts,
   GuestBigProduct,
-  GuestCartView
+  GuestCartView,
+  NotFound
 } from './components'
 import {me} from './store'
 
@@ -22,12 +23,15 @@ import {getAllProducts} from './store/product'
  */
 class Routes extends Component {
   componentDidMount() {
+    console.log(this.props.isLoggedIn)
+    console.log(this.props.userId)
     this.props.loadInitialData()
     this.props.getAllProducts()
   }
 
   render() {
     const {isLoggedIn} = this.props
+    // this.props.getCart(this.props.userId)
 
     return (
       <Switch>
@@ -41,7 +45,7 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/:id" component={BigProduct} />
-            <Route path="/cart" component={CartView} />
+            <Route path="/users/:id/cart" component={CartView} />
           </Switch>
         ) : (
           <Switch>
@@ -58,6 +62,7 @@ class Routes extends Component {
         )}
         {/* Displays our AllProducts component as a fallback */}
         <Route component={AllProducts} />
+        <Route path="/product-not-found" component={NotFound} />
       </Switch>
     )
   }
@@ -71,7 +76,9 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    products: state.products
+    userId: state.user.id,
+    products: state.products,
+    cart: state.cart
   }
 }
 
@@ -82,7 +89,8 @@ const mapDispatch = dispatch => {
     },
     getAllProducts() {
       dispatch(getAllProducts())
-    }
+    },
+    getCart: userId => dispatch(getCart(userId))
   }
 }
 

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {GET_USER} from './user'
 
 //action types
 const CHANGED_QUANTITY = 'CHANGED_QUANTITY'
@@ -52,10 +53,10 @@ export const changeQuantity = (quantity, productId) => async dispatch => {
   }
 }
 
-export const getCart = () => async dispatch => {
+export const getCart = userId => async dispatch => {
   try {
-    const {data} = await axios.get('/api/carts')
-    console.log('we got the data')
+    const {data} = await axios.get(`/api/users/${userId}/cart`)
+    console.log(data)
     dispatch(gotCart(data))
   } catch (error) {
     console.log('error getting cart', error)
@@ -90,6 +91,12 @@ export default function(state = initialState, action) {
       return {...state, [action.productId]: action.quantity}
     case CHANGED_QUANTITY:
       return {...state, [action.productId]: action.quantity}
+    case GET_USER:
+      console.log(action.cart)
+      return action.cart.reduce((prev, curr) => {
+        prev[curr.productId] = curr.quantity
+        return prev
+      }, {})
     case GOT_CART:
       return action.cart.reduce((prev, curr) => {
         prev[curr.productId] = curr.quantity

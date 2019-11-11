@@ -25,16 +25,6 @@ export default class GuestCartProduct extends Component {
     return (this.props.price * this.props.quantity).toFixed(2)
   }
 
-  //   removeItem(productId) {
-  //     let localCart = JSON.parse(localStorage.getItem('cart'))
-  //     delete localCart[productId]
-  //     localStorage.setItem('cart', JSON.stringify(localCart))
-  //   }
-
-  //   changeState() {
-  //     this.setState({check: !this.state.check})
-  //   }
-
   changeStorageQuantity(productId, quantity) {
     let localCart = JSON.parse(localStorage.getItem('cart'))
     localCart[productId] = +quantity

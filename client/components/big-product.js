@@ -3,6 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getSingleProducts} from '../store/product'
 import {Item, Input, Button, Icon} from 'semantic-ui-react'
+import {Redirect} from 'react-router'
 import {Link} from 'react-router-dom'
 import {changeQuantity, addItem} from '../store/cart'
 
@@ -36,7 +37,12 @@ export default connect(
     }
 
     render() {
-      console.log(this.props)
+      if (
+        !this.props.products.products.some(
+          product => product.id === +this.props.match.params.id
+        )
+      )
+        return <Redirect to="/product-not-found" />
       return (
         <div className="single-big-view">
           <div>
