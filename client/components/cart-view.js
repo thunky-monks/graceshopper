@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {CART_HEADER} from '../strings'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
@@ -15,7 +15,7 @@ export default connect(
     checkout: cart => () => dispatch(checkout(cart))
   })
 )(
-  class CartView extends Component {
+  class CartView extends React.Component {
     constructor(props) {
       super(props)
 

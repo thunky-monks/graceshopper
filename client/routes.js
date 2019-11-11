@@ -8,11 +8,13 @@ import {
   UserHome,
   AllProducts,
   BigProduct,
+  CartView,
+  GuestAllProducts,
+  GuestBigProduct,
+  GuestCartView,
   NotFound
 } from './components'
 import {me} from './store'
-import CartView from './components/cart-view'
-import {getCart} from './store/cart'
 
 import {getAllProducts} from './store/product'
 
@@ -25,7 +27,6 @@ class Routes extends Component {
     console.log(this.props.userId)
     this.props.loadInitialData()
     this.props.getAllProducts()
-    // this.props.getCart(this.props.userId)
   }
 
   render() {
@@ -35,12 +36,24 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/products" component={AllProducts} />
-        <Route path="/products/:id" component={BigProduct} />
-        <Route path="/users/:id/cart" component={CartView} />
-        <Route path="/product-not-found" component={NotFound} />
+        {/* <Route exact path="/products" component={AllProducts} />
+        <Route path="/products/:id" component={BigProduct} /> */}
+        {isLoggedIn ? (
+          <Switch>
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/:id" component={BigProduct} />
+            <Route path="/users/:id/cart" component={CartView} />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact path="/products" component={GuestAllProducts} />
+            <Route path="/products/:id" component={GuestBigProduct} />
+            <Route path="/cart" component={GuestCartView} />
+          </Switch>
+        )}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -49,6 +62,7 @@ class Routes extends Component {
         )}
         {/* Displays our AllProducts component as a fallback */}
         <Route component={AllProducts} />
+        <Route path="/product-not-found" component={NotFound} />
       </Switch>
     )
   }
