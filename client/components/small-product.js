@@ -32,22 +32,25 @@ export default connect(
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
-      <Icon name="dollar sign" />
-      {props.price}
-      <br />
-      <Button
-        animated="vertical"
-        onClick={
-          props.cart[props.id]
-            ? props.changeQuantity(props.cart[props.id] + 1, props.id)
-            : props.addItem(1, props.id)
-        }
-      >
-        <Button.Content hidden>Add</Button.Content>
-        <Button.Content visible>
-          <Icon name="shop" />
-        </Button.Content>
-      </Button>
+      <span id="price">
+        <Icon name="dollar sign" />
+        {props.price}
+      </span>
+      <span className="right floated">
+        <Button
+          animated="vertical"
+          onClick={
+            props.cart[props.id]
+              ? props.changeQuantity(props.cart[props.id] + 1, props.id)
+              : props.addItem(1, props.id)
+          }
+        >
+          <Button.Content hidden>Add</Button.Content>
+          <Button.Content visible>
+            <Icon name="shop" />
+          </Button.Content>
+        </Button>
+      </span>
     </Card.Content>
   </Card>
 ))

@@ -61,7 +61,6 @@ export default connect(
               />
             ))}
           </Item.Group>
-
           <div className="checkout-container">
             <h3>
               Subtotal ({theCartCount} items): ${theTotal}

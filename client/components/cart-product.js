@@ -30,7 +30,7 @@ export default connect(null, dispatch => ({
     render() {
       return (
         <Item>
-          <Item.Image size="medium" src={this.props.imageURL} />
+          <Item.Image size="small" src={this.props.imageURL} />
           <Item.Content verticalAlign="middle">
             <Item.Header>{this.props.name}</Item.Header>
             <Item.Meta>Price: ${this.props.price}</Item.Meta>
