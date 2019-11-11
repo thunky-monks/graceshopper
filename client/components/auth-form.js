@@ -82,10 +82,12 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
+      const firstName = evt.target.firstName.value
+      const lastName = evt.target.lastName.value
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      dispatch(auth(firstName, lastName, email, password, formName))
     }
   }
 }
