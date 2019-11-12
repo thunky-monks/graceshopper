@@ -3,14 +3,13 @@ import {CART_HEADER} from '../strings'
 import {connect} from 'react-redux'
 import GuestCartProduct from './guest-cart-product'
 import {guestCheckout} from '../store/cart'
-// import Checkout from './stripe-checkout'
+import Checkout from './stripe-checkout'
 // import StripeCheckout from 'react'
 import {Item, Button} from 'semantic-ui-react'
 
 export default connect(
   state => ({products: state.products, cart: state.cart}),
   dispatch => ({
-    // getCart: () => dispatch(getCart()),
     guestCheckout: cart => dispatch(guestCheckout(cart))
   })
 )(
@@ -23,7 +22,7 @@ export default connect(
       this.calcCart = this.calcCart.bind(this)
       this.removeItem = this.removeItem.bind(this)
       this.clickCheckout = this.clickCheckout.bind(this)
-      this.changeStoryQuantity = this.changeStorageQuantity.bind(this)
+      this.changeStorageQuantity = this.changeStorageQuantity.bind(this)
     }
 
     componentDidMount() {
@@ -45,8 +44,8 @@ export default connect(
       )
     }
 
-    clickCheckout(guestCart) {
-      this.props.guestCheckout(guestCart)
+    clickCheckout() {
+      //this.props.guestCheckout(guestCart)
       localStorage.clear()
       localStorage.setItem('cart', JSON.stringify({}))
       this.setState({guestCart: {}})
@@ -56,6 +55,7 @@ export default connect(
       let localCart = JSON.parse(localStorage.getItem('cart'))
       localCart[productId] = +quantity
       localStorage.setItem('cart', JSON.stringify(localCart))
+      this.setState({guestCart: localCart})
     }
 
     render() {
@@ -71,8 +71,6 @@ export default connect(
           0
         )
         .toFixed(2)
-
-      console.log(this.state.guestCart)
 
       return (
         <div>
@@ -95,13 +93,17 @@ export default connect(
             <h3>
               Subtotal ({theCartCount} items): ${theTotal}
             </h3>
-            <Button
+            {/* <Button
               color="olive"
               onClick={() => this.clickCheckout(this.state.guestCart)}
             >
               Checkout
-            </Button>
-            {/* <Checkout onClick={console.log('TESTING THIS BUTTON')} /> */}
+            </Button> */}
+            <Checkout
+              clickCheckout={this.clickCheckout}
+              guestCart={this.state.guestCart}
+              guestCheckout={this.props.guestCheckout}
+            />
           </div>
         </div>
       )
