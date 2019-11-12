@@ -13,7 +13,7 @@ export default class GuestCartProduct extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.calculateItemTotal = this.calculateItemTotal.bind(this)
-    this.changeStorageQuantity = this.changeStorageQuantity.bind(this)
+    // this.changeStorageQuantity = this.changeStorageQuantity.bind(this)
     // this.removeItem = this.removeItem.bind(this)
   }
 
@@ -25,11 +25,11 @@ export default class GuestCartProduct extends Component {
     return (this.props.price * this.props.quantity).toFixed(2)
   }
 
-  changeStorageQuantity(productId, quantity) {
-    let localCart = JSON.parse(localStorage.getItem('cart'))
-    localCart[productId] = +quantity
-    localStorage.setItem('cart', JSON.stringify(localCart))
-  }
+  // changeStorageQuantity(productId, quantity) {
+  //   let localCart = JSON.parse(localStorage.getItem('cart'))
+  //   localCart[productId] = +quantity
+  //   localStorage.setItem('cart', JSON.stringify(localCart))
+  // }
 
   render() {
     return (
@@ -47,7 +47,10 @@ export default class GuestCartProduct extends Component {
           <Button
             primary
             onClick={() =>
-              this.changeStorageQuantity(this.props.id, +this.state.quantity)
+              this.props.changeStorageQuantity(
+                this.props.id,
+                +this.state.quantity
+              )
             }
           >
             Update

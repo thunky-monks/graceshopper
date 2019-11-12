@@ -4,11 +4,17 @@ import {Item, Input, Button} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {changeQuantity, removeItem} from '../store/cart'
 
-export default connect(null, dispatch => ({
-  changeQuantity: (quantity, productId, userId) => () =>
-    dispatch(changeQuantity(quantity, productId, userId)),
-  removeItem: (userId, productId) => () => dispatch(removeItem(productId))
-}))(
+export default connect(
+  state => ({
+    user: state.user
+  }),
+  dispatch => ({
+    changeQuantity: (userId, quantity, productId) => () =>
+      dispatch(changeQuantity(userId, quantity, productId)),
+    removeItem: (userId, productId) => () =>
+      dispatch(removeItem(userId, productId))
+  })
+)(
   class CartProduct extends Component {
     constructor(props) {
       super(props)
@@ -28,6 +34,7 @@ export default connect(null, dispatch => ({
     }
 
     render() {
+      console.log(this.props.user)
       return (
         <Item>
           <Item.Image size="small" src={this.props.imageURL} />
@@ -43,6 +50,7 @@ export default connect(null, dispatch => ({
             <Button
               primary
               onClick={this.props.changeQuantity(
+                this.props.user.id,
                 +this.state.quantity,
                 this.props.id,
                 this.props.userId
@@ -53,7 +61,7 @@ export default connect(null, dispatch => ({
           </Item.Content>
           <Button
             color="red"
-            onClick={this.props.removeItem(this.props.userId, this.props.id)}
+            onClick={this.props.removeItem(this.props.user.id, this.props.id)}
             className="removeCartButton"
           >
             Remove from Cart
