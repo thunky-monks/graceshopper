@@ -83,13 +83,13 @@ export default connect(
             onClick={
               this.props.cart[this.props.products.singleProduct.id]
                 ? this.props.changeQuantity(
-                    props.id,
+                    this.props.id,
                     this.props.cart[this.props.products.singleProduct.id] +
                       +this.state.quantity,
                     this.props.products.singleProduct.id
                   )
                 : this.props.addItem(
-                    props.id,
+                    this.props.id,
                     +this.state.quantity,
                     this.props.products.singleProduct.id
                   )

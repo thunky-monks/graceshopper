@@ -20,6 +20,7 @@ export default connect(
   })
 )(props => (
   <Card>
+    {console.log(props)}
     <Link to={`/products/${props.id}`}>
       <Image className="small-card-image" src={props.imageURL} />
     </Link>
@@ -43,11 +44,11 @@ export default connect(
           onClick={
             props.cart[props.id]
               ? props.changeQuantity(
-                  props.id,
+                  props.user.id,
                   props.cart[props.id] + 1,
                   props.id
                 )
-              : props.addItem(props.id, 1, props.id)
+              : props.addItem(props.user.id, 1, props.id)
           }
         >
           <Button.Content hidden>Add</Button.Content>

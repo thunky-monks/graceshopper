@@ -37,7 +37,7 @@ const removedItem = productId => ({
 //thunks
 export const addItem = (userId, quantity, productId) => async dispatch => {
   try {
-    const {data} = await axios.post(`/api/users/${userId}/carts/add`, {
+    const {data} = await axios.post(`/api/users/${userId}/cart/add`, {
       quantity,
       productId
     })
@@ -62,7 +62,7 @@ export const changeQuantity = (
   productId
 ) => async dispatch => {
   try {
-    const {data} = await axios.put(`/api/${userId}/carts/edit`, {
+    const {data} = await axios.put(`/api/${userId}/cart/edit`, {
       quantity,
       productId
     })
@@ -91,9 +91,9 @@ export const getCart = userId => async dispatch => {
   }
 }
 
-export const removeItem = productId => async dispatch => {
+export const removeItem = (userId, productId) => async dispatch => {
   try {
-    await axios.delete(`/api/carts/delete/${productId}`)
+    await axios.delete(`/api/users/${userId}/carts/delete/${productId}`)
     dispatch(removedItem(productId))
   } catch (error) {
     console.log('error removing item from cart')
