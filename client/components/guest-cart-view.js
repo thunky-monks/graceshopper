@@ -27,7 +27,7 @@ export default connect(
 
     componentDidMount() {
       let localStorageObj = JSON.parse(localStorage.getItem('cart'));
-      this.setState({ guestCart: localStorageObj });
+      if (localStorageObj) this.setState({ guestCart: localStorageObj });
     }
 
     removeItem(productId) {
