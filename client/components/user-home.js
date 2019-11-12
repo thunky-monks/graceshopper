@@ -11,11 +11,9 @@ class UserHome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: -1,
-      edit: false
+      activeIndex: -1
     };
     this.handleClick = this.handleClick.bind(this);
-    this.editButton = this.editButton.bind(this);
   }
 
   componentDidMount() {
@@ -29,20 +27,15 @@ class UserHome extends React.Component {
     this.setState({ activeIndex: newIndex });
   }
 
-  editButton() {
-    const toggle = !this.state.edit;
-    this.setState({ edit: toggle });
-  }
-
   render() {
     console.log(this.props);
     const { user } = this.props;
     return (
       <div className="profile">
         <span className="right floated">
-          {/* <Link to={`/users/${user.id}/edit`}> */}
-          <Icon id="edit-icon" name="edit outline" onClick={this.editButton} />
-          {/* </Link> */}
+          <Link to={`/users/${user.id}/edit`}>
+            <Icon id="edit-icon" name="edit outline" />
+          </Link>
         </span>
         <h2>{user.firstName + ' ' + user.lastName}</h2>
         <h2>{user.email}</h2>
