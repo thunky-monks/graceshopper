@@ -12,7 +12,7 @@ export default connect(
   state => ({products: state.products, cart: state.cart, user: state.user}),
   dispatch => ({
     getCart: () => dispatch(getCart()),
-    checkout: cart => () => dispatch(checkout(cart))
+    checkout: (userId, cart) => () => dispatch(checkout(userId, cart))
   })
 )(
   class CartView extends React.Component {
@@ -60,6 +60,7 @@ export default connect(
                 key={product.id}
                 {...product}
                 quantity={this.props.cart[product.id]}
+                userId={this.props.match.params.id}
               />
             ))}
           </Item.Group>
@@ -69,7 +70,10 @@ export default connect(
             </h3>
             <Button
               color="olive"
-              onClick={this.props.checkout(this.props.cart)}
+              onClick={this.props.checkout(
+                this.props.match.params.id,
+                this.props.cart
+              )}
             >
               Checkout
             </Button>

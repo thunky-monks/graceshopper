@@ -100,9 +100,9 @@ export const removeItem = (userId, productId) => async dispatch => {
   }
 }
 
-export const checkout = cart => async dispatch => {
+export const checkout = (userId, cart) => async dispatch => {
   try {
-    await axios.post('/api/carts/checkout', {cart})
+    await axios.post(`/api/users/${userId}/cart/checkout`, {cart})
     dispatch(gotCart([]))
   } catch (error) {
     console.log('error checking out')

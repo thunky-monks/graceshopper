@@ -9,9 +9,9 @@ import {changeQuantity, addItem} from '../store/cart'
 
 export default connect(
   state => ({
+    user: state.user,
     products: state.products,
-    cart: state.cart,
-    user: state.user
+    cart: state.cart
   }),
   dispatch => ({
     getSingleProducts: productId => dispatch(getSingleProducts(productId)),
@@ -87,12 +87,14 @@ export default connect(
                     this.props.user.id,
                     this.props.cart[this.props.products.singleProduct.id] +
                       +this.state.quantity,
-                    this.props.products.singleProduct.id
+                    this.props.products.singleProduct.id,
+                    this.props.user.id
                   )
                 : this.props.addItem(
                     this.props.user.id,
                     +this.state.quantity,
-                    this.props.products.singleProduct.id
+                    this.props.products.singleProduct.id,
+                    this.props.user.id
                   )
             }
           >

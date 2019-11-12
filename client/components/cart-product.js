@@ -52,7 +52,8 @@ export default connect(
               onClick={this.props.changeQuantity(
                 this.props.user.id,
                 +this.state.quantity,
-                this.props.id
+                this.props.id,
+                this.props.userId
               )}
             >
               Update
