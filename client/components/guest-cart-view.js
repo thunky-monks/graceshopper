@@ -3,14 +3,13 @@ import {CART_HEADER} from '../strings'
 import {connect} from 'react-redux'
 import GuestCartProduct from './guest-cart-product'
 import {guestCheckout} from '../store/cart'
-// import Checkout from './stripe-checkout'
+import Checkout from './stripe-checkout'
 // import StripeCheckout from 'react'
 import {Item, Button} from 'semantic-ui-react'
 
 export default connect(
   state => ({products: state.products, cart: state.cart}),
   dispatch => ({
-    // getCart: () => dispatch(getCart()),
     guestCheckout: cart => dispatch(guestCheckout(cart))
   })
 )(
@@ -87,13 +86,17 @@ export default connect(
             <h3>
               Subtotal ({theCartCount} items): ${theTotal}
             </h3>
-            <Button
+            {/* <Button
               color="olive"
               onClick={() => this.clickCheckout(this.state.guestCart)}
             >
               Checkout
-            </Button>
-            {/* <Checkout onClick={console.log('TESTING THIS BUTTON')} /> */}
+            </Button> */}
+            <Checkout
+              clickCheckout={this.clickCheckout}
+              guestCart={this.state.guestCart}
+              guestCheckout={this.props.guestCheckout}
+            />
           </div>
         </div>
       )
