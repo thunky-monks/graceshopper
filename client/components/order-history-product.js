@@ -10,7 +10,9 @@ export default props => {
         <Item.Header>{props.name}</Item.Header>
         <Item.Meta>Quantity: {props.quantity}</Item.Meta>
         <Item.Meta>Price: ${props.price}</Item.Meta>
-        {/* <Item.Meta>Item total: ${props.price * props.quantity} </Item.Meta> */}
+        <Item.Meta>
+          Item total: ${(props.price * props.quantity).toFixed(2)}{' '}
+        </Item.Meta>
       </Item.Content>
     </Item>
   )

@@ -32,26 +32,21 @@ class UserHome extends React.Component {
     const {user} = this.props
     return (
       <div className="profile">
-        {/* <img src="" /> */}
         <h2>{user.firstName + ' ' + user.lastName}</h2>
-        {/* <i className="circular user icon" /> */}
         <h3>{user.email}</h3>
         <h3>Order History</h3>
         <Accordion>
-          {this.props.orderHistory.map((order, i) => (
-            <OrderHistoryPanel
-              order={order}
-              activeIndex={this.state.activeIndex}
-              index={i}
-              key={order.id}
-              handleClick={this.handleClick}
-            />
-          ))}
-          {/* {this.props.orderHistory.length ? (
-            <OrderHistoryPanel order={this.props.orderHistory[0]} />
-          ) : (
-            ''
-          )} */}
+          {this.props.orderHistory
+            .filter(order => order.datePurchased)
+            .map((order, i) => (
+              <OrderHistoryPanel
+                order={order}
+                activeIndex={this.state.activeIndex}
+                index={i}
+                key={order.id}
+                handleClick={this.handleClick}
+              />
+            ))}
         </Accordion>
       </div>
     )
