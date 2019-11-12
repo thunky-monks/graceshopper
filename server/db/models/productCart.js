@@ -16,5 +16,11 @@ module.exports = db.define('product_cart', {
     validate: {
       min: 0
     }
+  },
+  priceAtPurchase: {
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0
+    }
   }
 })

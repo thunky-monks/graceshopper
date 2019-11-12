@@ -12,7 +12,7 @@ export default connect(
   state => ({products: state.products, cart: state.cart, user: state.user}),
   dispatch => ({
     getCart: () => dispatch(getCart()),
-    checkout: cart => () => dispatch(checkout(cart))
+    checkout: (userId, cart) => () => dispatch(checkout(userId, cart))
   })
 )(
   class CartView extends React.Component {
@@ -28,12 +28,14 @@ export default connect(
 
     calcCart() {
       console.log('calculating the cart!')
+      console.log(this.props)
       return this.props.products.products.filter(
         product => this.props.cart[product.id]
       )
     }
 
     render() {
+      console.log('checking cart view user id', this.props.user.id)
       if (+this.props.match.params.id !== this.props.user.id)
         return <Redirect to="/products" />
       const theCart = this.calcCart()
@@ -58,6 +60,7 @@ export default connect(
                 key={product.id}
                 {...product}
                 quantity={this.props.cart[product.id]}
+                userId={this.props.match.params.id}
               />
             ))}
           </Item.Group>
@@ -67,7 +70,10 @@ export default connect(
             </h3>
             <Button
               color="olive"
-              onClick={this.props.checkout(this.props.cart)}
+              onClick={this.props.checkout(
+                this.props.match.params.id,
+                this.props.cart
+              )}
             >
               Checkout
             </Button>
