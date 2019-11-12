@@ -7,6 +7,10 @@ export const ORDER_HISTORY_PANEL_LABEL = order => {
     0,
     10
   )}) Total: $${order.products.reduce((sum, product) => {
-    return sum + product.product_cart.priceAtPurchase;
+    console.log(product.product_cart.quantity);
+    return (
+      sum +
+      +(product.product_cart.priceAtPurchase * product.product_cart.quantity)
+    );
   }, 0)}`;
 };

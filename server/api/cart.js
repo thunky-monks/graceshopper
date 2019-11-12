@@ -22,6 +22,7 @@ router.get('/', async (req, res, next) => {
 router.post('/checkout', async (req, res, next) => {
   try {
     const activeCart = await Cart.getUsersCart(req.user.id);
+    await activeCart.addPriceAtPurchase();
     activeCart.update({ datePurchased: new Date() });
     await Product.updateInventory(req.body.cart);
     await Cart.create({ userId: req.user.id });

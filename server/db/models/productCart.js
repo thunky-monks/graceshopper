@@ -1,5 +1,5 @@
-const db = require('../db')
-const Sequelize = require('sequelize')
+const db = require('../db');
+const Sequelize = require('sequelize');
 
 module.exports = db.define('product_cart', {
   productId: {
@@ -18,9 +18,9 @@ module.exports = db.define('product_cart', {
     }
   },
   priceAtPurchase: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DECIMAL,
     validate: {
       min: 0
     }
   }
-})
+});
