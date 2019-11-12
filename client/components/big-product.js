@@ -9,15 +9,16 @@ import {changeQuantity, addItem} from '../store/cart'
 
 export default connect(
   state => ({
+    user: state.user,
     products: state.products,
     cart: state.cart
   }),
   dispatch => ({
     getSingleProducts: productId => dispatch(getSingleProducts(productId)),
-    changeQuantity: (quantity, productId) => () =>
-      dispatch(changeQuantity(quantity, productId)),
-    addItem: (quantity, productId) => () => {
-      dispatch(addItem(quantity, productId))
+    changeQuantity: (quantity, productId, userId) => () =>
+      dispatch(changeQuantity(quantity, productId, userId)),
+    addItem: (quantity, productId, userId) => () => {
+      dispatch(addItem(quantity, productId, userId))
     }
   })
 )(
@@ -85,11 +86,13 @@ export default connect(
                 ? this.props.changeQuantity(
                     this.props.cart[this.props.products.singleProduct.id] +
                       +this.state.quantity,
-                    this.props.products.singleProduct.id
+                    this.props.products.singleProduct.id,
+                    this.props.user.id
                   )
                 : this.props.addItem(
                     +this.state.quantity,
-                    this.props.products.singleProduct.id
+                    this.props.products.singleProduct.id,
+                    this.props.user.id
                   )
             }
           >

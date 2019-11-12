@@ -7,14 +7,15 @@ import {changeQuantity, addItem} from '../store/cart'
 
 export default connect(
   state => ({
+    user: state.user,
     cart: state.cart
   }),
   dispatch => ({
-    changeQuantity: (quantity, productId) => () => {
-      dispatch(changeQuantity(quantity, productId))
+    changeQuantity: (quantity, productId, userId) => () => {
+      dispatch(changeQuantity(quantity, productId, userId))
     },
-    addItem: (quantity, productId) => () => {
-      dispatch(addItem(quantity, productId))
+    addItem: (quantity, productId, userId) => () => {
+      dispatch(addItem(quantity, productId, userId))
     }
   })
 )(props => (
@@ -41,8 +42,12 @@ export default connect(
           animated="vertical"
           onClick={
             props.cart[props.id]
-              ? props.changeQuantity(props.cart[props.id] + 1, props.id)
-              : props.addItem(1, props.id)
+              ? props.changeQuantity(
+                  props.cart[props.id] + 1,
+                  props.id,
+                  props.user.id
+                )
+              : props.addItem(1, props.id, props.user.id)
           }
         >
           <Button.Content hidden>Add</Button.Content>

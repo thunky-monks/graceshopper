@@ -5,9 +5,9 @@ import {connect} from 'react-redux'
 import {changeQuantity, removeItem} from '../store/cart'
 
 export default connect(null, dispatch => ({
-  changeQuantity: (quantity, productId) => () =>
-    dispatch(changeQuantity(quantity, productId)),
-  removeItem: productId => () => dispatch(removeItem(productId))
+  changeQuantity: (quantity, productId, userId) => () =>
+    dispatch(changeQuantity(quantity, productId, userId)),
+  removeItem: (userId, productId) => () => dispatch(removeItem(productId))
 }))(
   class CartProduct extends Component {
     constructor(props) {
@@ -44,7 +44,8 @@ export default connect(null, dispatch => ({
               primary
               onClick={this.props.changeQuantity(
                 +this.state.quantity,
-                this.props.id
+                this.props.id,
+                this.props.userId
               )}
             >
               Update
@@ -52,7 +53,7 @@ export default connect(null, dispatch => ({
           </Item.Content>
           <Button
             color="red"
-            onClick={this.props.removeItem(this.props.id)}
+            onClick={this.props.removeItem(this.props.userId, this.props.id)}
             className="removeCartButton"
           >
             Remove from Cart
