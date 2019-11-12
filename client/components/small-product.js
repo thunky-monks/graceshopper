@@ -20,7 +20,6 @@ export default connect(
   })
 )(props => (
   <Card>
-    {console.log(props)}
     <Link to={`/products/${props.id}`}>
       <Image className="small-card-image" src={props.imageURL} />
     </Link>

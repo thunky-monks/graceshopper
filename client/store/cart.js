@@ -62,7 +62,7 @@ export const changeQuantity = (
   productId
 ) => async dispatch => {
   try {
-    const {data} = await axios.put(`/api/${userId}/cart/edit`, {
+    const {data} = await axios.put(`/api/users/${userId}/cart/edit`, {
       quantity,
       productId
     })
@@ -93,7 +93,7 @@ export const getCart = userId => async dispatch => {
 
 export const removeItem = (userId, productId) => async dispatch => {
   try {
-    await axios.delete(`/api/users/${userId}/carts/delete/${productId}`)
+    await axios.delete(`/api/users/${userId}/cart/delete/${productId}`)
     dispatch(removedItem(productId))
   } catch (error) {
     console.log('error removing item from cart')

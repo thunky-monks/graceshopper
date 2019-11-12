@@ -48,8 +48,6 @@ router.post('/add', async (req, res, next) => {
 
 router.put('/edit', async (req, res, next) => {
   try {
-    console.log('req-user-id:', req.user.id)
-    console.log('req.params.id:', req.params.id)
     const activeCart = await Cart.getUsersCart(req.user.id)
     const cartItem = await ProductCart.findOne({
       where: {productId: req.body.productId, cartId: activeCart.id}
