@@ -29,7 +29,7 @@ Cart.prototype.addPriceAtPurchase = async function() {
   await Promise.all(
     contents.map(content => {
       const p = this.products.find(product => product.id === content.productId);
-      content.priceAtPurchase = p.price;
+      content.priceAtPurchase = +p.price;
       return content.save();
     })
   );

@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Login,
   Signup,
@@ -12,20 +12,21 @@ import {
   GuestAllProducts,
   GuestBigProduct,
   GuestCartView,
-  NotFound
-} from './components'
-import {me} from './store'
+  NotFound,
+  EditProfile
+} from './components';
+import { me } from './store';
 
-import {getAllProducts} from './store/product'
+import { getAllProducts } from './store/product';
 
 class Routes extends Component {
   componentDidMount() {
-    this.props.loadInitialData()
-    this.props.getAllProducts()
+    this.props.loadInitialData();
+    this.props.getAllProducts();
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const { isLoggedIn } = this.props;
     return (
       <Switch>
         <Route path="/product-not-found" component={NotFound} />
@@ -34,6 +35,7 @@ class Routes extends Component {
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/:id" component={BigProduct} />
             <Route path="/users/:id/cart" component={CartView} />
+            <Route path="/users/:id/edit" component={EditProfile} />
             <Route path="/home" component={UserHome} />
           </Switch>
         ) : (
@@ -47,7 +49,7 @@ class Routes extends Component {
         )}
         <Route component={AllProducts} />
       </Switch>
-    )
+    );
   }
 }
 
@@ -60,24 +62,24 @@ const mapState = state => {
     userId: state.user.id,
     products: state.products,
     cart: state.cart
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch(me())
+      dispatch(me());
     },
     getAllProducts() {
-      dispatch(getAllProducts())
+      dispatch(getAllProducts());
     },
     getCart: userId => dispatch(getCart(userId))
-  }
-}
+  };
+};
 
-export default withRouter(connect(mapState, mapDispatch)(Routes))
+export default withRouter(connect(mapState, mapDispatch)(Routes));
 
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
-}
+};
