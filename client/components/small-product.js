@@ -11,10 +11,10 @@ export default connect(
     user: state.user
   }),
   dispatch => ({
-    changeQuantity: (userId, quantity, productId) => () => {
+    changeQuantity: (userId, quantity, productId) => {
       dispatch(changeQuantity(userId, quantity, productId));
     },
-    addItem: (userId, quantity, productId) => () => {
+    addItem: (userId, quantity, productId) => {
       dispatch(addItem(userId, quantity, productId));
     }
   })
