@@ -8,12 +8,11 @@ export default class GuestCartProduct extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      quantity: this.props.quantity,
-      check: false
+      quantity: this.props.quantity
     }
     this.handleChange = this.handleChange.bind(this)
     this.calculateItemTotal = this.calculateItemTotal.bind(this)
-    this.changeStorageQuantity = this.changeStorageQuantity.bind(this)
+    // this.changeStorageQuantity = this.changeStorageQuantity.bind(this)
     // this.removeItem = this.removeItem.bind(this)
   }
 
@@ -25,13 +24,8 @@ export default class GuestCartProduct extends Component {
     return (this.props.price * this.props.quantity).toFixed(2)
   }
 
-  changeStorageQuantity(productId, quantity) {
-    let localCart = JSON.parse(localStorage.getItem('cart'))
-    localCart[productId] = +quantity
-    localStorage.setItem('cart', JSON.stringify(localCart))
-  }
-
   render() {
+    console.log(this.state.quantity)
     return (
       <Item>
         <Item.Image size="medium" src={this.props.imageURL} />

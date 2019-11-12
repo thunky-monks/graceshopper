@@ -11,10 +11,11 @@ export default class Checkout extends Component {
     alert('Payment Error')
   }
   onToken = token => {
-    axios
-      .put('/api/carts/checkout', this.props.guestCart)
-      .then('Payment successfull')
-      .catch('Payment error')
+    this.props.clickCheckout()
+    // axios
+    //   .put('/api/carts/checkout', this.props.guestCart)
+    //   .then()
+    //   .catch('Payment error')
   }
 
   render() {
