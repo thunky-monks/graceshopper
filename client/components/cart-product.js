@@ -1,8 +1,8 @@
 /*eslint-disable react/display-name*/
-import React, {Component} from 'react'
-import {Item, Input, Button} from 'semantic-ui-react'
-import {connect} from 'react-redux'
-import {changeQuantity, removeItem} from '../store/cart'
+import React, { Component } from 'react';
+import { Item, Input, Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { changeQuantity, removeItem } from '../store/cart';
 
 export default connect(
   state => ({
@@ -17,24 +17,23 @@ export default connect(
 )(
   class CartProduct extends Component {
     constructor(props) {
-      super(props)
+      super(props);
       this.state = {
         quantity: this.props.quantity
-      }
-      this.handleChange = this.handleChange.bind(this)
-      this.calculateItemTotal = this.calculateItemTotal.bind(this)
+      };
+      this.handleChange = this.handleChange.bind(this);
+      this.calculateItemTotal = this.calculateItemTotal.bind(this);
     }
 
     handleChange(event) {
-      this.setState({quantity: event.target.value})
+      this.setState({ quantity: event.target.value });
     }
 
     calculateItemTotal() {
-      return (this.props.price * this.props.quantity).toFixed(2)
+      return (this.props.price * this.props.quantity).toFixed(2);
     }
 
     render() {
-      console.log(this.props.user)
       return (
         <Item>
           <Item.Image size="small" src={this.props.imageURL} />
@@ -67,7 +66,7 @@ export default connect(
             Remove from Cart
           </Button>
         </Item>
-      )
+      );
     }
   }
-)
+);
