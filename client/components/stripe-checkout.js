@@ -12,9 +12,15 @@ export default class Checkout extends Component {
     alert('Payment Error');
   };
   onToken = token => {
-    if (this.props.userId) {
-      // axios.post(`/api/users/${this.props.user.id}/cart/checkout`, this.props.cart).then().catch('Payment error')
-      this.props.checkout(this.props.userId, this.props.cart);
+    if (this.props.isLoggedIn) {
+      console.log('logged in user checking out with stripe');
+      console.log('checking props:', this.props.userId, this.props.cart);
+      let cart = this.props.cart;
+      axios
+        .post(`/api/users/${this.props.userId}/cart/checkout`, { cart })
+        .then()
+        .catch('Payment error');
+      // this.props.checkout(this.props.userId, this.props.cart);
     } else {
       axios
         .put('/api/carts/checkout', this.props.guestCart)

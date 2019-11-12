@@ -10,7 +10,12 @@ import { Item, Button } from 'semantic-ui-react';
 import Checkout from './stripe-checkout';
 
 export default connect(
-  state => ({ products: state.products, cart: state.cart, user: state.user }),
+  state => ({
+    products: state.products,
+    cart: state.cart,
+    user: state.user,
+    isLoggedIn: !!state.user
+  }),
   dispatch => ({
     getCart: () => dispatch(getCart()),
     checkout: (userId, cart) => () => dispatch(checkout(userId, cart))
@@ -36,7 +41,7 @@ export default connect(
     }
 
     render() {
-      console.log('checking cart view user id', this.props.user.id);
+      console.log('checking cart view user id', this.props.cart);
       if (+this.props.match.params.id !== this.props.user.id)
         return <Redirect to="/products" />;
       const theCart = this.calcCart();
@@ -78,6 +83,7 @@ export default connect(
             <Checkout
               checkout={this.props.checkout}
               cart={this.props.cart}
+              isLoggedIn={this.props.isLoggedIn}
               userId={this.props.user.id}
             />
           </div>
