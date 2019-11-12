@@ -117,3 +117,7 @@ main {
 #price {
   color: black;
 }
+
+#edit-icon {
+  align-self: flex-end;
+}
