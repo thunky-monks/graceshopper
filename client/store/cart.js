@@ -81,6 +81,15 @@ export const checkout = cart => async dispatch => {
   }
 }
 
+export const guestCheckout = cart => async dispatch => {
+  try {
+    console.log('I am in the guestCheckout thunk')
+    await axios.put('/api/carts/checkout', {cart})
+  } catch (error) {
+    console.log('error checking out guest')
+  }
+}
+
 //initialState
 const initialState = {}
 

@@ -2,15 +2,16 @@ import React, {Component} from 'react'
 import {CART_HEADER} from '../strings'
 import {connect} from 'react-redux'
 import GuestCartProduct from './guest-cart-product'
-import Checkout from './stripe-checkout'
-import StripeCheckout from 'react'
+import {guestCheckout} from '../store/cart'
+// import Checkout from './stripe-checkout'
+// import StripeCheckout from 'react'
 import {Item, Button} from 'semantic-ui-react'
 
 export default connect(
   state => ({products: state.products, cart: state.cart}),
   dispatch => ({
     // getCart: () => dispatch(getCart()),
-    checkout: cart => () => dispatch(checkout(cart))
+    guestCheckout: cart => dispatch(guestCheckout(cart))
   })
 )(
   class GuestCartView extends Component {
@@ -21,6 +22,7 @@ export default connect(
       }
       this.calcCart = this.calcCart.bind(this)
       this.removeItem = this.removeItem.bind(this)
+      this.clickCheckout = this.clickCheckout.bind(this)
     }
 
     componentDidMount() {
@@ -42,6 +44,13 @@ export default connect(
       )
     }
 
+    clickCheckout(guestCart) {
+      this.props.guestCheckout(guestCart)
+      localStorage.clear()
+      localStorage.setItem('cart', JSON.stringify({}))
+      this.setState({guestCart: {}})
+    }
+
     render() {
       //COME BACK TO THIS AND UNDERSTAND THIS FUNCTION
       const theCart = this.calcCart()
@@ -55,6 +64,8 @@ export default connect(
           0
         )
         .toFixed(2)
+
+      console.log(this.state.guestCart)
 
       return (
         <div>
@@ -78,11 +89,11 @@ export default connect(
             </h3>
             <Button
               color="olive"
-              onClick={this.props.checkout(this.state.guestCart)}
+              onClick={() => this.clickCheckout(this.state.guestCart)}
             >
               Checkout
             </Button>
-            <Checkout onClick={console.log('TESTING THIS BUTTON')} />
+            {/* <Checkout onClick={console.log('TESTING THIS BUTTON')} /> */}
           </div>
         </div>
       )
