@@ -41,7 +41,10 @@ export default class GuestCartProduct extends Component {
           <Button
             primary
             onClick={() =>
-              this.changeStorageQuantity(this.props.id, +this.state.quantity)
+              this.props.changeStorageQuantity(
+                this.props.id,
+                +this.state.quantity
+              )
             }
           >
             Update

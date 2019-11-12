@@ -55,6 +55,7 @@ export default connect(
       let localCart = JSON.parse(localStorage.getItem('cart'))
       localCart[productId] = +quantity
       localStorage.setItem('cart', JSON.stringify(localCart))
+      this.setState({guestCart: localCart})
     }
 
     render() {

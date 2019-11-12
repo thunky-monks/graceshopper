@@ -11,11 +11,11 @@ export default class Checkout extends Component {
     alert('Payment Error')
   }
   onToken = token => {
+    axios
+      .put('/api/carts/checkout', this.props.guestCart)
+      .then()
+      .catch('Payment error')
     this.props.clickCheckout()
-    // axios
-    //   .put('/api/carts/checkout', this.props.guestCart)
-    //   .then()
-    //   .catch('Payment error')
   }
 
   render() {
@@ -24,7 +24,7 @@ export default class Checkout extends Component {
       <StripeCheckout
         stripeKey="pk_test_KN27EtqY7xQBhWBzXv8V4ezk00O5ZntEg7"
         token={this.onToken}
-        label="Pay with 💳"
+        label="Pay with card"
         panelLabel="Checkout"
       />
     )
