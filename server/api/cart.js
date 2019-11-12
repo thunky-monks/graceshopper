@@ -4,7 +4,7 @@ const {Cart, ProductCart, Product} = require('../db/models')
 router.get('/', async (req, res, next) => {
   // console.log('REQ PARAMS ID', req.paramsId)
   try {
-    const cartById = await Cart.getUsersCart(req.paramsId)
+    const cartById = await Cart.getUsersCart(req.params.id)
     const cartItems = await ProductCart.findAll({
       where: {
         cartId: cartById.id
@@ -48,6 +48,8 @@ router.post('/add', async (req, res, next) => {
 
 router.put('/edit', async (req, res, next) => {
   try {
+    console.log('req-user-id:', req.user.id)
+    console.log('req.params.id:', req.params.id)
     const activeCart = await Cart.getUsersCart(req.user.id)
     const cartItem = await ProductCart.findOne({
       where: {productId: req.body.productId, cartId: activeCart.id}

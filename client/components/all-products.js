@@ -6,7 +6,7 @@ import SmallProduct from './small-product'
 import {ALL_PRODUCTS_HEADER} from '../strings'
 
 export default connect(
-  state => ({products: state.products}),
+  state => ({products: state.products, user: state.user}),
   dispatch => ({getAllProducts: () => dispatch(getAllProducts())})
 )(
   class AllProducts extends React.Component {

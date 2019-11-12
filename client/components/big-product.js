@@ -14,9 +14,9 @@ export default connect(
   }),
   dispatch => ({
     getSingleProducts: productId => dispatch(getSingleProducts(productId)),
-    changeQuantity: (quantity, productId) => () =>
+    changeQuantity: (userId, quantity, productId) => () =>
       dispatch(changeQuantity(quantity, productId)),
-    addItem: (quantity, productId) => () => {
+    addItem: (userId, quantity, productId) => () => {
       dispatch(addItem(quantity, productId))
     }
   })
@@ -83,11 +83,13 @@ export default connect(
             onClick={
               this.props.cart[this.props.products.singleProduct.id]
                 ? this.props.changeQuantity(
+                    props.id,
                     this.props.cart[this.props.products.singleProduct.id] +
                       +this.state.quantity,
                     this.props.products.singleProduct.id
                   )
                 : this.props.addItem(
+                    props.id,
                     +this.state.quantity,
                     this.props.products.singleProduct.id
                   )

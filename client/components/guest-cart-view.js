@@ -23,6 +23,7 @@ export default connect(
       this.calcCart = this.calcCart.bind(this)
       this.removeItem = this.removeItem.bind(this)
       this.clickCheckout = this.clickCheckout.bind(this)
+      this.changeStoryQuantity = this.changeStorageQuantity.bind(this)
     }
 
     componentDidMount() {
@@ -49,6 +50,12 @@ export default connect(
       localStorage.clear()
       localStorage.setItem('cart', JSON.stringify({}))
       this.setState({guestCart: {}})
+    }
+
+    changeStorageQuantity(productId, quantity) {
+      let localCart = JSON.parse(localStorage.getItem('cart'))
+      localCart[productId] = +quantity
+      localStorage.setItem('cart', JSON.stringify(localCart))
     }
 
     render() {
@@ -79,6 +86,7 @@ export default connect(
                 {...product}
                 quantity={this.state.guestCart[product.id]}
                 removeItem={this.removeItem}
+                changeStorageQuantity={this.changeStorageQuantity}
               />
             ))}
           </Item.Group>

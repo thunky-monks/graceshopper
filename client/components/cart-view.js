@@ -28,12 +28,14 @@ export default connect(
 
     calcCart() {
       console.log('calculating the cart!')
+      console.log(this.props)
       return this.props.products.products.filter(
         product => this.props.cart[product.id]
       )
     }
 
     render() {
+      console.log('checking cart view user id', this.props.user.id)
       if (+this.props.match.params.id !== this.props.user.id)
         return <Redirect to="/products" />
       const theCart = this.calcCart()

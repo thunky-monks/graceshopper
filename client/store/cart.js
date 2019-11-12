@@ -35,23 +35,51 @@ const removedItem = productId => ({
 // })
 
 //thunks
-export const addItem = (quantity, productId) => async dispatch => {
+export const addItem = (userId, quantity, productId) => async dispatch => {
   try {
-    const {data} = await axios.post('/api/carts/add', {quantity, productId})
+    const {data} = await axios.post(`/api/users/${userId}/carts/add`, {
+      quantity,
+      productId
+    })
     dispatch(addedItem(data.quantity, data.productId))
   } catch (error) {
     console.log('error adding item', error)
   }
 }
+// export const addItem = (quantity, productId) => async dispatch => {
+//   try {
 
-export const changeQuantity = (quantity, productId) => async dispatch => {
+//     const {data} = await axios.post('/api/carts/add', {quantity, productId})
+//     dispatch(addedItem(data.quantity, data.productId))
+//   } catch (error) {
+//     console.log('error adding item', error)
+//   }
+// }
+
+export const changeQuantity = (
+  userId,
+  quantity,
+  productId
+) => async dispatch => {
   try {
-    const {data} = await axios.put('/api/carts/edit', {quantity, productId})
+    const {data} = await axios.put(`/api/${userId}/carts/edit`, {
+      quantity,
+      productId
+    })
     dispatch(changedQuantity(data.quantity, data.productId))
   } catch (error) {
     console.log('error changing quantity', error)
   }
 }
+
+// export const changeQuantity = (quantity, productId) => async dispatch => {
+//   try {
+//     const {data} = await axios.put('/api/carts/edit', {quantity, productId})
+//     dispatch(changedQuantity(data.quantity, data.productId))
+//   } catch (error) {
+//     console.log('error changing quantity', error)
+//   }
+// }
 
 export const getCart = userId => async dispatch => {
   try {
