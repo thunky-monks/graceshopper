@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { Cart, ProductCart, Product } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
-  // console.log('REQ PARAMS ID', req.paramsId)
   try {
     const cartById = await Cart.getUsersCart(req.user.id);
     const cartItems = await ProductCart.findAll({

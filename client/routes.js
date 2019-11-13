@@ -23,6 +23,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
     this.props.getAllProducts();
+    localStorage.setItem('cart', JSON.stringify({}));
   }
 
   render() {
@@ -47,6 +48,7 @@ class Routes extends Component {
             <Route path="/cart" component={GuestCartView} />
           </Switch>
         )}
+
         <Route component={AllProducts} />
       </Switch>
     );

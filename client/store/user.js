@@ -37,8 +37,10 @@ export const editUser = user => async dispatch => {
 export const me = () => async dispatch => {
   try {
     const userRes = await axios.get('/auth/me');
-    const cartRes = await axios.get(`/api/users/${userRes.data.id}/cart`);
-    dispatch(getUser(userRes.data || defaultUser, cartRes.data));
+    if (userRes.data) {
+      const cartRes = await axios.get(`/api/users/${userRes.data.id}/cart`);
+      dispatch(getUser(userRes.data || defaultUser, cartRes.data));
+    }
   } catch (err) {
     console.error(err);
   }
