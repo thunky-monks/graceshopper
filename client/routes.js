@@ -31,7 +31,6 @@ class Routes extends Component {
     return (
       <Switch>
         <Route path="/product-not-found" component={NotFound} />
-        <Route path="/thankyou" component={ThankYou} />
         {isLoggedIn ? (
           <Switch>
             <Route exact path="/products" component={AllProducts} />
