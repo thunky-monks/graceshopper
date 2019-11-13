@@ -62,7 +62,6 @@ const Navbar = ({ handleClick, isLoggedIn, userId, cart }) => (
       <div>
         <h2 id="SITE-HEADER">{WEBSITE_HEADER}</h2>
         <div className="ui secondary menu">
-          {/* The navbar will show these links before you log in */}
           <Link class="item" to="/products">
             Home
           </Link>
@@ -111,9 +110,6 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(Navbar);
 
-/**
- * PROP TYPES
- */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired

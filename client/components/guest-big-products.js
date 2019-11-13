@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getSingleProducts } from '../store/product';
 import { Item, Input, Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { changeQuantity, addItem } from '../store/cart';
 
 export default connect(
   state => ({
@@ -24,9 +23,6 @@ export default connect(
       this.addItemStorage = this.addItemStorage.bind(this);
     }
 
-    // handleChange(event) {
-    //   this.setState({[event.target.name]: event.target.value})
-    // }
     handleChange(event) {
       this.setState({ quantity: event.target.value });
     }
@@ -53,7 +49,6 @@ export default connect(
     }
 
     render() {
-      console.log(this.state.quantity);
       return (
         <div className="single-big-view">
           <div>
@@ -85,8 +80,8 @@ export default connect(
           <br />
 
           <Input
-            label="Quantity:"
-            placeholder="Quantity"
+            label="quantity:"
+            name="quantity"
             onChange={this.handleChange}
             value={this.state.quantity}
           />

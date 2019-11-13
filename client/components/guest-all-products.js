@@ -1,21 +1,20 @@
 /*eslint-disable react/display-name*/
-import React from 'react'
-import {connect} from 'react-redux'
-import {getAllProducts} from '../store/product'
-import GuestSmallProduct from './guest-small-product'
-import {ALL_PRODUCTS_HEADER} from '../strings'
+import React from 'react';
+import { connect } from 'react-redux';
+import { getAllProducts } from '../store/product';
+import GuestSmallProduct from './guest-small-product';
+import { ALL_PRODUCTS_HEADER } from '../strings';
 
 export default connect(
-  state => ({products: state.products}),
-  dispatch => ({getAllProducts: () => dispatch(getAllProducts())})
+  state => ({ products: state.products }),
+  dispatch => ({ getAllProducts: () => dispatch(getAllProducts()) })
 )(
   class extends React.Component {
     componentDidMount() {
-      this.props.getAllProducts()
+      this.props.getAllProducts();
     }
 
     render() {
-      console.log('TESTING THIS COMPONENT')
       return (
         <div>
           <div className="productHeader">
@@ -27,7 +26,7 @@ export default connect(
             ))}
           </div>
         </div>
-      )
+      );
     }
   }
-)
+);

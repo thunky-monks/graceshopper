@@ -1,7 +1,6 @@
 /*eslint-disable react/display-name*/
 import React, { Component } from 'react';
 import { Item, Input, Button } from 'semantic-ui-react';
-import { connect } from 'react-redux';
 
 export default class GuestCartProduct extends Component {
   constructor(props) {

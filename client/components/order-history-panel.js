@@ -1,12 +1,11 @@
 /*eslint-disable react/display-name*/
 
-import React from 'react'
-import {Accordion, Icon, Item} from 'semantic-ui-react'
-import {ORDER_HISTORY_PANEL_LABEL} from '../strings'
-import OrderHistoryProduct from './order-history-product'
+import React from 'react';
+import { Accordion, Icon, Item } from 'semantic-ui-react';
+import { ORDER_HISTORY_PANEL_LABEL } from '../strings';
+import OrderHistoryProduct from './order-history-product';
 
 export default props => {
-  // const activeIndex = props.activeIndex
   return (
     <div>
       <Accordion.Title
@@ -25,5 +24,5 @@ export default props => {
         </Item.Group>
       </Accordion.Content>
     </div>
-  )
-}
+  );
+};

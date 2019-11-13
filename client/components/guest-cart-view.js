@@ -38,14 +38,12 @@ export default connect(
     }
 
     calcCart() {
-      console.log('calculating the cart!');
       return this.props.products.products.filter(
         product => this.state.guestCart[product.id]
       );
     }
 
     clickCheckout() {
-      //this.props.guestCheckout(guestCart)
       localStorage.clear();
       localStorage.setItem('cart', JSON.stringify({}));
       this.setState({ guestCart: {} });
@@ -59,7 +57,6 @@ export default connect(
     }
 
     render() {
-      //COME BACK TO THIS AND UNDERSTAND THIS FUNCTION
       const theCart = this.calcCart();
       const theCartCount = theCart.reduce(
         (total, item) => total + this.state.guestCart[item.id],
@@ -93,7 +90,6 @@ export default connect(
             <h3>
               Subtotal ({theCartCount} items): ${theTotal}
             </h3>
-
             <Checkout
               clickCheckout={this.clickCheckout}
               guestCart={this.state.guestCart}

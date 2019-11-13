@@ -49,7 +49,6 @@ export default connect(
                 {this.props.name}
               </Card.Header>
             </Link>
-            {/* <Card.Meta>MANUFACTURER GOES HERE</Card.Meta> */}
             <Card.Description id="small-card-description">
               {this.props.description}
             </Card.Description>
