@@ -33,6 +33,7 @@ class Routes extends Component {
         <Route path="/product-not-found" component={NotFound} />
         {isLoggedIn ? (
           <Switch>
+            <Route exact path="/" component={AllProducts} />
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/:id" component={BigProduct} />
             <Route path="/users/:id/cart" component={CartView} />
@@ -41,6 +42,7 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
+            <Route exact path="/" component={GuestAllProducts} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route exact path="/products" component={GuestAllProducts} />
