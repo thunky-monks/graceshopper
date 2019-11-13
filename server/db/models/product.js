@@ -30,9 +30,8 @@ const Product = db.define('product', {
   },
   imageURL: {
     type: Sequelize.STRING,
+    defaultValue: 'http://dummyimage.com/278x250.png/5fa2dd/ffffff',
     allowNull: false,
-    defaultValue:
-      'http://www.cpsglobalgroup.com/wp-content/uploads/2017/11/placeholder.jpg',
     validate: {
       isUrl: true
     }
