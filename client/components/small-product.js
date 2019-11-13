@@ -58,7 +58,7 @@ export default connect(
               <Icon name="dollar sign" />
               {this.props.price}
               {this.state.recentlyAdded === this.props.id ? (
-                <span> Added to cart!</span>
+                <span>&nbsp;&nbsp;&nbsp; Added to cart!</span>
               ) : (
                 ''
               )}

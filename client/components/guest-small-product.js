@@ -7,10 +7,13 @@ import { connect } from 'react-redux';
 export default class GuestSmallProduct extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { recentlyAdded: 0 };
     this.addItemStorage = this.addItemStorage.bind(this);
   }
 
   addItemStorage(productId) {
+    this.setState({ recentlyAdded: productId });
+
     if (!localStorage.cart) {
       let prodQuantObj = {};
       prodQuantObj[productId] = 1;
@@ -45,6 +48,11 @@ export default class GuestSmallProduct extends React.Component {
           <span id="price">
             <Icon name="dollar sign" />
             {this.props.price}
+            {this.state.recentlyAdded === this.props.id ? (
+              <span>&nbsp;&nbsp;&nbsp; Added to cart!</span>
+            ) : (
+              ''
+            )}
           </span>
           <span className="right floated">
             <Button
