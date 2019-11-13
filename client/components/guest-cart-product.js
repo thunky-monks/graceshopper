@@ -1,37 +1,26 @@
 /*eslint-disable react/display-name*/
-import React, {Component} from 'react'
-import {Item, Input, Button} from 'semantic-ui-react'
-import {connect} from 'react-redux'
-// import {changeQuantity, removeItem} from '../store/cart'
+import React, { Component } from 'react';
+import { Item, Input, Button } from 'semantic-ui-react';
 
 export default class GuestCartProduct extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       quantity: this.props.quantity
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.calculateItemTotal = this.calculateItemTotal.bind(this)
-    // this.changeStorageQuantity = this.changeStorageQuantity.bind(this)
-    // this.removeItem = this.removeItem.bind(this)
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.calculateItemTotal = this.calculateItemTotal.bind(this);
   }
 
   handleChange(event) {
-    this.setState({quantity: event.target.value})
+    this.setState({ quantity: event.target.value });
   }
 
   calculateItemTotal() {
-    return (this.props.price * this.props.quantity).toFixed(2)
+    return (this.props.price * this.props.quantity).toFixed(2);
   }
 
-  // changeStorageQuantity(productId, quantity) {
-  //   let localCart = JSON.parse(localStorage.getItem('cart'))
-  //   localCart[productId] = +quantity
-  //   localStorage.setItem('cart', JSON.stringify(localCart))
-  // }
-
   render() {
-    console.log(this.state.quantity)
     return (
       <Item>
         <Item.Image size="medium" src={this.props.imageURL} />
@@ -64,6 +53,6 @@ export default class GuestCartProduct extends Component {
           Remove from Cart
         </Button>
       </Item>
-    )
+    );
   }
 }

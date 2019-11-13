@@ -1,14 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout} from '../store'
-import {WEBSITE_HEADER} from '../strings'
-import {withStyles} from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import Badge from '@material-ui/core/Badge'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
+import { WEBSITE_HEADER } from '../strings';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Badge from '@material-ui/core/Badge';
 
 const StyledBadge1 = withStyles(theme => ({
   badge: {
@@ -16,19 +16,19 @@ const StyledBadge1 = withStyles(theme => ({
     border: `2px solid ${theme.palette.background.paper}`,
     padding: '0 4px'
   }
-}))(Badge)
+}))(Badge);
 
 function calcCartTotal(cart) {
-  let total = 0
+  let total = 0;
   for (let i in cart) {
     if (i > 0) {
-      total += cart[i]
+      total += cart[i];
     }
   }
-  return total
+  return total;
 }
 
-const Navbar = ({handleClick, isLoggedIn, userId, cart}) => (
+const Navbar = ({ handleClick, isLoggedIn, userId, cart }) => (
   <div>
     {isLoggedIn ? (
       <div className="nav">
@@ -62,7 +62,6 @@ const Navbar = ({handleClick, isLoggedIn, userId, cart}) => (
       <div>
         <h2 id="SITE-HEADER">{WEBSITE_HEADER}</h2>
         <div className="ui secondary menu">
-          {/* The navbar will show these links before you log in */}
           <Link class="item" to="/products">
             Home
           </Link>
@@ -85,7 +84,7 @@ const Navbar = ({handleClick, isLoggedIn, userId, cart}) => (
       </div>
     )}
   </div>
-)
+);
 
 /**
  * CONTAINER
@@ -95,23 +94,20 @@ const mapState = state => {
     isLoggedIn: !!state.user.id,
     userId: state.user.id,
     cart: state.cart
-  }
-}
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout())
+      dispatch(logout());
     }
-  }
-}
+  };
+};
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar);
 
-/**
- * PROP TYPES
- */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
-}
+};

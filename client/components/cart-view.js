@@ -28,20 +28,13 @@ export default connect(
       this.calcCart = this.calcCart.bind(this);
     }
 
-    // componentDidMount() {
-    //   this.props.getCart()
-    // }
-
     calcCart() {
-      console.log('calculating the cart!');
-      console.log(this.props);
       return this.props.products.products.filter(
         product => this.props.cart[product.id]
       );
     }
 
     render() {
-      console.log('checking cart view user id', this.props.cart);
       if (+this.props.match.params.id !== this.props.user.id)
         return <Redirect to="/products" />;
       const theCart = this.calcCart();
@@ -74,12 +67,6 @@ export default connect(
             <h3>
               Subtotal ({theCartCount} items): ${theTotal}
             </h3>
-            <Button
-              color="olive"
-              onClick={this.props.checkout(this.props.user.id, this.props.cart)}
-            >
-              Checkout
-            </Button>
             <Checkout
               checkout={this.props.checkout}
               cart={this.props.cart}

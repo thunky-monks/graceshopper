@@ -1,9 +1,9 @@
 /*eslint-disable react/display-name*/
-import React from 'react'
-import {Button, Card, Icon, Image} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {changeQuantity, addItem} from '../store/cart'
+import React from 'react';
+import { Button, Card, Icon, Image } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { changeQuantity, addItem } from '../store/cart';
 
 export default connect(
   state => ({
@@ -12,10 +12,10 @@ export default connect(
   }),
   dispatch => ({
     changeQuantity: (userId, quantity, productId) => () => {
-      dispatch(changeQuantity(userId, quantity, productId))
+      dispatch(changeQuantity(userId, quantity, productId));
     },
     addItem: (userId, quantity, productId) => () => {
-      dispatch(addItem(userId, quantity, productId))
+      dispatch(addItem(userId, quantity, productId));
     }
   })
 )(props => (
@@ -27,7 +27,6 @@ export default connect(
       <Link to={`/products/${props.id}`}>
         <Card.Header id="small-card-header">{props.name}</Card.Header>
       </Link>
-      {/* <Card.Meta>MANUFACTURER GOES HERE</Card.Meta> */}
       <Card.Description id="small-card-description">
         {props.description}
       </Card.Description>
@@ -58,4 +57,4 @@ export default connect(
       </span>
     </Card.Content>
   </Card>
-))
+));

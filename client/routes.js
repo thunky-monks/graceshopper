@@ -12,8 +12,10 @@ import {
   GuestAllProducts,
   GuestBigProduct,
   GuestCartView,
-  NotFound
+  NotFound,
+  ThankYou
 } from './components';
+
 import { me } from './store';
 
 import { getAllProducts } from './store/product';
@@ -30,6 +32,7 @@ class Routes extends Component {
     return (
       <Switch>
         <Route path="/product-not-found" component={NotFound} />
+        <Route path="/thankyou" component={ThankYou} />
         {isLoggedIn ? (
           <Switch>
             <Route exact path="/products" component={AllProducts} />
@@ -46,6 +49,7 @@ class Routes extends Component {
             <Route path="/cart" component={GuestCartView} />
           </Switch>
         )}
+
         <Route component={AllProducts} />
       </Switch>
     );

@@ -20,7 +20,6 @@ Cart.getUsersCart = function(userId) {
   return cartById;
 };
 Cart.prototype.addPriceAtPurchase = async function() {
-  console.log('HELLO LALALALA');
   const contents = await ProductCart.findAll({
     where: {
       cartId: this.id

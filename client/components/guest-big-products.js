@@ -1,10 +1,9 @@
 /*eslint-disable react/display-name*/
-import React from 'react'
-import {connect} from 'react-redux'
-import {getSingleProducts} from '../store/product'
-import {Item, Input, Button, Icon} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
-import {changeQuantity, addItem} from '../store/cart'
+import React from 'react';
+import { connect } from 'react-redux';
+import { getSingleProducts } from '../store/product';
+import { Item, Input, Button, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 export default connect(
   state => ({
@@ -16,44 +15,40 @@ export default connect(
 )(
   class GuestBigProduct extends React.Component {
     constructor(props) {
-      super(props)
+      super(props);
       this.state = {
         quantity: 1
-      }
-      this.handleChange = this.handleChange.bind(this)
-      this.addItemStorage = this.addItemStorage.bind(this)
+      };
+      this.handleChange = this.handleChange.bind(this);
+      this.addItemStorage = this.addItemStorage.bind(this);
     }
 
-    // handleChange(event) {
-    //   this.setState({[event.target.name]: event.target.value})
-    // }
     handleChange(event) {
-      this.setState({quantity: event.target.value})
+      this.setState({ quantity: event.target.value });
     }
 
     componentDidMount() {
-      this.props.getSingleProducts(this.props.match.params.id)
+      this.props.getSingleProducts(this.props.match.params.id);
     }
 
     addItemStorage(productId, quantity) {
       if (!localStorage.cart) {
-        let prodQuantObj = {}
+        let prodQuantObj = {};
 
-        prodQuantObj[productId] = +quantity
-        localStorage.setItem('cart', JSON.stringify(prodQuantObj))
+        prodQuantObj[productId] = +quantity;
+        localStorage.setItem('cart', JSON.stringify(prodQuantObj));
       } else {
-        let localCart = JSON.parse(localStorage.getItem('cart'))
+        let localCart = JSON.parse(localStorage.getItem('cart'));
         if (localCart[productId]) {
-          localCart[productId] += +quantity
+          localCart[productId] += +quantity;
         } else {
-          localCart[productId] = +quantity
+          localCart[productId] = +quantity;
         }
-        localStorage.setItem('cart', JSON.stringify(localCart))
+        localStorage.setItem('cart', JSON.stringify(localCart));
       }
     }
 
     render() {
-      console.log(this.state.quantity)
       return (
         <div className="single-big-view">
           <div>
@@ -84,7 +79,6 @@ export default connect(
           <Input
             label="quantity:"
             name="quantity"
-            // placeholder = {this.state.quantity}
             onChange={this.handleChange}
             value={this.state.quantity}
           />
@@ -111,7 +105,7 @@ export default connect(
             </Button>
           </div>
         </div>
-      )
+      );
     }
   }
-)
+);
