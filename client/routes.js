@@ -13,9 +13,8 @@ import {
   GuestBigProduct,
   GuestCartView,
   NotFound,
-  ThankYou
+  EditProfile
 } from './components';
-
 import { me } from './store';
 
 import { getAllProducts } from './store/product';
@@ -38,6 +37,7 @@ class Routes extends Component {
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/:id" component={BigProduct} />
             <Route path="/users/:id/cart" component={CartView} />
+            <Route path="/users/:id/edit" component={EditProfile} />
             <Route path="/home" component={UserHome} />
           </Switch>
         ) : (

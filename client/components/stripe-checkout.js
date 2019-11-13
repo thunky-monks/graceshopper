@@ -15,16 +15,6 @@ export default connect(
       alert('Payment Successful');
     };
 
-    isEmpty = obj => {
-      for (let prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    };
-
     errorPayment = () => {
       alert('Payment Error');
     };

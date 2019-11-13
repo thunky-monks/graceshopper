@@ -74,7 +74,10 @@ const Navbar = ({ handleClick, isLoggedIn, userId, cart }) => (
             </Link>
             <Link className="item" to="/cart">
               <IconButton aria-label="cart">
-                <StyledBadge1 badgeContent={4} color="primary">
+                <StyledBadge1
+                  badgeContent={calcCartTotal(cart)}
+                  color="primary"
+                >
                   <ShoppingCartIcon />
                 </StyledBadge1>
               </IconButton>

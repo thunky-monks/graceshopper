@@ -15,4 +15,4 @@ export { default as GuestCartView } from './guest-cart-view';
 export { default as GuestSmallProduct } from './guest-small-product';
 export { default as GuestCartProduct } from './guest-cart-product';
 export { default as NotFound } from './not-found';
-export { default as ThankYou } from './thank-you';
+export { default as EditProfile } from './edit-profile';

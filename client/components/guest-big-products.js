@@ -63,12 +63,15 @@ export default connect(
                 </Item.Header>
                 <br />
                 <Item.Description>
+                  <div id="big-view-description"> Description:</div>
                   {this.props.products.singleProduct.description}
                 </Item.Description>
                 <br />
 
                 <Item.Meta>
-                  Price: ${this.props.products.singleProduct.price}
+                  <div id="big-view-description">Price: </div>
+                  <Icon name="dollar sign" />
+                  {this.props.products.singleProduct.price}
                 </Item.Meta>
                 <Item.Meta> </Item.Meta>
               </Item.Content>

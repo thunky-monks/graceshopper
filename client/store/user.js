@@ -6,6 +6,7 @@ import history from '../history';
  */
 export const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
+const EDITED_USER = 'EDITED_USER';
 
 /**
  * INITIAL STATE
@@ -17,10 +18,22 @@ const defaultUser = {};
  */
 const getUser = (user, cart) => ({ type: GET_USER, user, cart });
 const removeUser = () => ({ type: REMOVE_USER });
+const editedUser = user => ({ type: EDITED_USER, user });
 
 /**
  * THUNK CREATORS
  */
+
+export const editUser = user => async dispatch => {
+  try {
+    const userRes = await axios.put(`/api/users/${user.id}/`, user);
+    if (userRes) dispatch(editedUser(userRes.data));
+    else console.log('error udpating user profile');
+  } catch (error) {
+    console.log('error updating user profile');
+  }
+};
+
 export const me = () => async dispatch => {
   try {
     const userRes = await axios.get('/auth/me');
@@ -84,6 +97,8 @@ export default function(state = defaultUser, action) {
       return action.user;
     case REMOVE_USER:
       return defaultUser;
+    case EDITED_USER:
+      return action.user;
     default:
       return state;
   }

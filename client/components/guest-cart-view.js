@@ -70,7 +70,7 @@ export default connect(
         .toFixed(2);
 
       return (
-        <div>
+        <div className="shopping-cart">
           <div className="cartHeader">
             <h1>{CART_HEADER}</h1>
           </div>
