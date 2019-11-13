@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Product = db.define('product', {
   name: {
@@ -30,29 +30,28 @@ const Product = db.define('product', {
   },
   imageURL: {
     type: Sequelize.STRING,
+    defaultValue: 'http://dummyimage.com/278x250.png/5fa2dd/ffffff',
     allowNull: false,
-    defaultValue:
-      'http://www.cpsglobalgroup.com/wp-content/uploads/2017/11/placeholder.jpg',
     validate: {
       isUrl: true
     }
   }
-})
+});
 
 Product.updateInventory = async function(cart) {
-  console.log('Updating inventory')
+  console.log('Updating inventory');
   const products = await this.findAll({
     where: {
       id: Object.keys(cart)
     }
-  })
+  });
   await Promise.all(
     products.map(product => {
-      product.quantity -= cart[product.id]
-      return product.save()
+      product.quantity -= cart[product.id];
+      return product.save();
     })
-  )
-}
+  );
+};
 
 // Product.updateInventoryGuest = async function(cart) {
 //   const products = await this.findAll({
@@ -68,4 +67,4 @@ Product.updateInventory = async function(cart) {
 //   )
 // }
 
-module.exports = Product
+module.exports = Product;
