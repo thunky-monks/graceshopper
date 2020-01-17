@@ -9,16 +9,16 @@ https://grace-shopper-thunky-monks.herokuapp.com/
 
 # Built With
 
-- React - Framework for Front-End web design
-- Redux - State Management Library
-- Node.js - JavaScript Runtime Environment
-- Express - Node web framework
-- PostgreSQL - Relational Database Management System
-- Axios - Promise-based HTTP Client
+- [React](https://reactjs.org/) - Framework for Front-End web design
+- [Redux](https://redux.js.org/) - State Management Library
+- [Node.js](https://nodejs.org/en/) - JavaScript Runtime Environment
+- [Express](https://expressjs.com/) - Node web framework
+- [PostgreSQL](https://www.postgresql.org/) - Relational Database Management System
+- [Axios](https://www.npmjs.com/package/axios) - Promise-based HTTP Client
 
-# Authors
+## Authors
 
-- Pete Klecha
-- Martin Ng
-- Erin Fung
-- Josh Grossman
+- **Pete Klecha**
+- **Martin Ng**
+- **Erin Fung**
+- **Josh Grossman**
